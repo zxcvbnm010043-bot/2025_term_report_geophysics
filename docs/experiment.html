@@ -3,432 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>地球物理與資料處理實務</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-geo: #27ae60;
-            --accent-data: #2980b9;
-            --accent-warn: #e67e22;
-            --bg-color: #f4f7f6;
-        }
-
-        body {
-            font-family: "Microsoft JhengHei", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: #333;
-            transition: background-color 0.3s;
-        }
-
-        /* 通用按鈕樣式 */
-        button {
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        /* ====================
-           主網頁樣式 (Main Page)
-           ==================== */
-        #main-view header {
-            background: linear-gradient(135deg, var(--primary-color), #34495e);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .controls {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            margin: 0 5px;
-            border: none;
-            border-radius: 20px;
-            font-size: 0.95em;
-        }
-        .btn-all { background-color: var(--primary-color); color: white; }
-        .btn-geo { background-color: white; border: 2px solid var(--accent-geo); color: var(--accent-geo); }
-        .btn-data { background-color: white; border: 2px solid var(--accent-data); color: var(--accent-data); }
-
-        .btn-geo.active, .btn-geo:hover { background-color: var(--accent-geo); color: white; }
-        .btn-data.active, .btn-data:hover { background-color: var(--accent-data); color: white; }
-
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .week-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.2s;
-        }
-        .week-card:hover { transform: translateY(-3px); }
-
-        .week-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .week-date { color: var(--primary-color); }
-
-        .content-section { display: flex; gap: 20px; flex-wrap: wrap; }
-        
-        .topic-box {
-            flex: 1;
-            padding: 10px;
-            border-radius: 5px;
-            min-width: 250px;
-        }
-        .geo-box { background-color: rgba(39, 174, 96, 0.1); border-left: 3px solid var(--accent-geo); }
-        .data-box { background-color: rgba(41, 128, 185, 0.1); border-left: 3px solid var(--accent-data); }
-
-        .tag {
-            font-size: 0.75em; padding: 2px 6px; border-radius: 4px;
-            color: white; display: inline-block; margin-bottom: 5px;
-        }
-        .tag-geo { background-color: var(--accent-geo); }
-        .tag-data { background-color: var(--accent-data); }
-
-        .special-link-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 12px;
-            background-color: var(--accent-warn);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.9em;
-            text-decoration: none;
-        }
-        .special-link-btn:hover { background-color: #d35400; transform: scale(1.05); }
-
-        /* 隱藏邏輯 */
-        .hide-geo .geo-box { display: none; }
-        .hide-data .data-box { display: none; }
-
-        /* ====================
-           子網頁樣式 (Sub Page)
-           ==================== */
-        #sub-view {
-            display: none; /* 預設隱藏 */
-            background-color: #f0f2f5;
-            min-height: 100vh;
-        }
-
-        .sub-nav {
-            background-color: var(--primary-color);
-            padding: 15px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .back-link { 
-            color: white; text-decoration: underline; cursor: pointer; font-weight: bold;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581093588402-40e854d6d376?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .sub-container {
-            max-width: 900px;
-            margin: -40px auto 40px;
-            padding: 20px;
-            position: relative;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .card h2 { border-bottom: 3px solid var(--accent-warn); display: inline-block; padding-bottom: 5px; margin-top: 0; }
-
-        .process-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-        
-        .step-btn {
-            flex: 1; padding: 15px; background: #ecf0f1; border: 2px solid #bdc3c7;
-            border-radius: 5px; font-weight: bold; min-width: 150px;
-        }
-        .step-btn.active, .step-btn:hover { background: var(--accent-warn); color: white; border-color: #d35400; }
-
-        .step-content {
-            background: #fff8f0; border: 1px solid var(--accent-warn);
-            padding: 20px; border-radius: 5px; display: none;
-            animation: fadeIn 0.5s;
-        }
-        .step-content.active { display: block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .equipment-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .equip-item { text-align: center; padding: 15px; border: 1px solid #eee; border-radius: 8px; }
-        .equip-icon { font-size: 2em; display: block; margin-bottom: 5px; }
-
-    </style>
+    <title>第三週：校園野外震測實驗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-800 font-sans">
 
-    <!-- ==================== 主網頁視圖 (Main View) ==================== -->
-    <div id="main-view">
-        <header>
-            <h1 style="margin:0;">地球物理與資料處理實務</h1>
-            <p style="opacity:0.9; margin-top:5px;">課程代碼: GP_DATA_2025</p>
-        </header>
-
-        <div class="controls">
-            <span>篩選：</span>
-            <button class="filter-btn btn-all active" onclick="filterContent('all')">全部</button>
-            <button class="filter-btn btn-geo" onclick="filterContent('geo')">僅地球物理</button>
-            <button class="filter-btn btn-data" onclick="filterContent('data')">僅資料技能</button>
-        </div>
-
-        <div class="container" id="schedule-container">
-            <!-- JS 動態生成內容 -->
-        </div>
-        
-        <footer style="text-align:center; padding:30px; color:#777;">
-            <p>© 2025 地球物理課程網頁</p>
-        </footer>
-    </div>
-
-    <!-- ==================== 子網頁視圖 (Sub View) ==================== -->
-    <div id="sub-view">
-        <div class="sub-nav">
-            <span>GP_DATA_2025</span>
-            <span class="back-link" onclick="showMainPage()">← 回主課程表</span>
-        </div>
-
-        <div class="hero">
-            <h1>校園野外實驗：折射探勘</h1>
-            <p>第三週實作課程</p>
-        </div>
-
-        <div class="sub-container">
-            <!-- 實驗目的 -->
-            <div class="card">
-                <h2>實驗目的</h2>
-                <p>本次實驗將在校園內進行淺層震測折射探勘。主要目標是讓同學熟悉儀器操作、受波器 (Geophone) 的佈設方式，以及震源激發的時序控制。收集到的數據將用於後續課程的 Python (Obspy) 資料處理練習。</p>
-            </div>
-
-            <!-- 儀器介紹 -->
-            <div class="card">
-                <h2>使用儀器</h2>
-                <div class="equipment-list">
-                    <div class="equip-item">
-                        <span class="equip-icon">🔨</span>
-                        <strong>震源 (Source)</strong>
-                        <p>大鐵鎚與鐵盤</p>
-                    </div>
-                    <div class="equip-item">
-                        <span class="equip-icon">📡</span>
-                        <strong>受波器 (Geophone)</strong>
-                        <p>垂直感測器</p>
-                    </div>
-                    <div class="equip-item">
-                        <span class="equip-icon">💻</span>
-                        <strong>震測儀 (Seismograph)</strong>
-                        <p>數位紀錄主機</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 互動實驗流程 -->
-            <div class="card">
-                <h2>互動實驗流程 (點擊步驟)</h2>
-                <div class="process-container">
-                    <button class="step-btn active" onclick="showStep(1)">1. 測線佈置</button>
-                    <button class="step-btn" onclick="showStep(2)">2. 連接儀器</button>
-                    <button class="step-btn" onclick="showStep(3)">3. 激發震源</button>
-                    <button class="step-btn" onclick="showStep(4)">4. 資料品管</button>
-                </div>
-
-                <div id="step-1" class="step-content active">
-                    <h3>步驟 1: 測線佈置 (Layout)</h3>
-                    <p>首先選定校園內平坦且干擾較少的草地。</p>
-                    <ul>
-                        <li>拉出捲尺確定測線長度 (例如 24公尺)。</li>
-                        <li>每隔固定間距 (例如 2公尺) 插設一顆受波器。</li>
-                        <li><strong>注意：</strong>受波器必須垂直且緊密接觸土壤，以確保訊號耦合良好。</li>
-                    </ul>
-                </div>
-
-                <div id="step-2" class="step-content">
-                    <h3>步驟 2: 連接儀器 (Connection)</h3>
-                    <p>將受波器的傳輸線彙整至集線箱。</p>
-                    <ul>
-                        <li>檢查所有接頭是否乾燥、乾淨。</li>
-                        <li>將訊號線連接至主要震測儀主機。</li>
-                        <li>開啟筆記型電腦與震測軟體，進行連線測試 (Line Test)。</li>
-                    </ul>
-                </div>
-
-                <div id="step-3" class="step-content">
-                    <h3>步驟 3: 激發震源 (Shooting)</h3>
-                    <p>開始進行資料收集。</p>
-                    <ul>
-                        <li>操作員在指定位置 (例如測線起點) 準備大鐵鎚。</li>
-                        <li>敲擊鐵盤的同時，觸發開關會送出訊號給儀器 (Time zero)。</li>
-                        <li>通常同一點需敲擊多次 (Stacking) 以消除隨機雜訊。</li>
-                    </ul>
-                </div>
-
-                <div id="step-4" class="step-content">
-                    <h3>步驟 4: 資料品管 (QC)</h3>
-                    <p>現場即時檢查。</p>
-                    <ul>
-                        <li>觀察螢幕上的波形，確認是否能看到明顯的初達波。</li>
-                        <li>若雜訊過大，需重新敲擊。</li>
-                        <li>確認資料無誤後存檔，準備下週使用 Python 進行處理。</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="text-align: center;">
-                <button class="special-link-btn" style="background-color:#2c3e50;" onclick="showMainPage()">回到課程總表</button>
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-stone-800 to-stone-600 text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pattern-dots"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <a href="index.html" class="absolute top-0 left-4 mt-4 text-white/70 hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> 回課程主頁
+            </a>
+            <span class="bg-yellow-500 text-stone-900 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block shadow-lg">Week 3</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">校園野外震測實驗</h1>
+            <p class="text-xl text-stone-200">Seismic Refraction Survey</p>
+            <div class="mt-8 flex justify-center gap-6 text-sm md:text-base">
+                <div class="flex items-center gap-2"><i class="fa-regular fa-calendar"></i> 9月24日 (週二)</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> 校園大草坪 (集合點)</div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- ==================== JavaScript 邏輯 ==================== -->
-    <script>
-        // --- 資料庫 ---
-        const courseData = [
-            { week: 1, date: "9/10", title: "課程介紹", geo: "地球物理概要", data: "環境安裝 (Python, VS Code), 帳號申請 (Google, Hugging Face, Github), Colab, Codespace, Dify", note: "上課方式、成績計算" },
-            { week: 2, date: "9/17", title: "基礎工具與折射探勘", geo: "折射探勘學", data: "pygmt, obspy, streamlit, gradio" },
-            { week: 3, date: "9/24", title: "校園野外實驗", geo: "折射探勘實作", data: "野外資料收集", hasLink: true },
-            { week: 4, date: "10/1", title: "專題演講", geo: "地球物理專題演講", data: "" },
-            { week: 5, date: "10/8", title: "互動程式開發", geo: "折射探勘學", data: "Hugging Face Space 製作互動程式" },
-            { week: 6, date: "10/15", title: "重力探勘入門", geo: "重力探勘學", data: "Colab 進階使用" },
-            { week: 7, date: "10/22", title: "協作開發與重力", geo: "重力探勘學", data: "Github 與 Codespace 使用" },
-            { week: 8, date: "10/29", title: "期中考", type: "exam" },
-            { week: 9, date: "11/05", title: "板塊與地震 (一)", geo: "板塊構造與地震", data: "pygmt 繪圖實務" },
-            { week: 10, date: "11/12", title: "板塊與地震 (二)", geo: "板塊構造與地震", data: "pygmt 進階應用" },
-            { week: 11, date: "11/19", title: "板塊與地磁 (一)", geo: "板塊構造與地磁", data: "obspy 地震資料處理" },
-            { week: 12, date: "11/26", title: "板塊與地磁 (二)", geo: "板塊構造與地磁", data: "obspy 進階分析" },
-            { week: 13, date: "12/3", title: "AI 應用與地熱 (一)", geo: "板塊構造與地熱", data: "Gemini API 申請、Dify 應用" },
-            { week: 14, date: "12/10", title: "AI 應用與地熱 (二)", geo: "板塊構造與地熱", data: "Dify 智慧助理實作" },
-            { week: 15, date: "12/17", title: "期末專題發表", type: "exam" },
-            { week: 16, date: "12/24", title: "行憲紀念日", type: "holiday", note: "放假一日" },
-            { week: 17, date: "12/31", title: "自主學習週", geo: "", data: "" },
-            { week: 18, date: "1/7", title: "參訪活動", geo: "大屯火山觀測中心 (暫定)", data: "", type: "trip" }
-        ];
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
 
-        // --- 頁面切換邏輯 ---
-        function showSubPage() {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('sub-view').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
+        <!-- Intro -->
+        <section class="mb-12 bg-white p-8 rounded-xl shadow-md border-l-8 border-yellow-500">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-yellow-500"></i> 實驗目的
+            </h2>
+            <p class="leading-relaxed text-stone-600 text-lg">
+                本週課程將走出教室，進行實際的<b>折射震測 (Seismic Refraction)</b>。學生將學習如何佈設受波器 (Geophones)、操作震測儀器，並利用人工震源 (大鎚) 產生震波。所收集的資料將用於後續課程的 Python 訊號處理與地層構造分析。
+            </p>
+        </section>
 
-        function showMainPage() {
-            document.getElementById('sub-view').style.display = 'none';
-            document.getElementById('main-view').style.display = 'block';
-            window.scrollTo(0, 0); // 這裡可以改進為回到原本的位置，但簡單起見先回頂部
-        }
-
-        // --- 主頁面渲染 ---
-        const container = document.getElementById('schedule-container');
-
-        function renderSchedule() {
-            container.innerHTML = '';
-            courseData.forEach(week => {
-                let html = `
-                    <div class="week-card" id="week-${week.week}">
-                        <div class="week-header">
-                            <span class="week-date">第 ${week.week} 週 (${week.date})</span>
-                            <span class="week-title">${week.title}</span>
-                        </div>
-                        <div class="content-section">
-                `;
-
-                if (week.type === 'exam' || week.type === 'holiday' || week.type === 'trip') {
-                    html += `<div style="width:100%; padding:10px; background:#f9f9f9; color:#555;">${week.note || week.geo || '無特別說明'}</div>`;
-                } else {
-                    if (week.geo) {
-                        html += `
-                            <div class="topic-box geo-box">
-                                <span class="tag tag-geo">地球物理知識</span>
-                                <p>${week.geo}</p>
-                                ${week.hasLink ? `<button class="special-link-btn" onclick="showSubPage()">👉 進入實驗子網頁</button>` : ''}
-                            </div>
-                        `;
-                    }
-                    if (week.data) {
-                        html += `
-                            <div class="topic-box data-box">
-                                <span class="tag tag-data">資料處理技能</span>
-                                <p>${week.data}</p>
-                            </div>
-                        `;
-                    }
-                }
+        <!-- Interactive Schedule -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-stone-800">當日流程</h2>
+            <div class="relative border-l-4 border-stone-300 ml-4 space-y-8">
                 
-                html += `</div></div>`;
-                container.innerHTML += html;
-            });
-        }
+                <!-- Time Block -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">09:10 - 09:30</span>
+                        <h3 class="text-xl font-bold mt-1">集合與分組</h3>
+                        <p class="text-stone-500 text-sm">地點：系館前廣場。請確認小組成員到齊。</p>
+                    </div>
+                </div>
 
-        function filterContent(type) {
-            const btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
+                <!-- Time Block -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">09:30 - 10:30</span>
+                        <h3 class="text-xl font-bold mt-1">儀器架設 (Deployment)</h3>
+                        <p class="text-stone-500 text-sm">鋪設測線、埋設 Geophones、連接主機。</p>
+                        <div class="mt-2 flex gap-2">
+                            <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded">實作重點</span>
+                        </div>
+                    </div>
+                </div>
 
-            container.classList.remove('hide-geo', 'hide-data');
+                <!-- Time Block -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">10:30 - 11:30</span>
+                        <h3 class="text-xl font-bold mt-1">施測 (Shooting)</h3>
+                        <p class="text-stone-500 text-sm">輪流擔任敲擊手(震源)與儀器操作員。確保資料品質。</p>
+                    </div>
+                </div>
 
-            if (type === 'all') {
-                document.querySelector('.btn-all').classList.add('active');
-            } else if (type === 'geo') {
-                container.classList.add('hide-data');
-                document.querySelector('.btn-geo').classList.add('active');
-            } else if (type === 'data') {
-                container.classList.add('hide-geo');
-                document.querySelector('.btn-data').classList.add('active');
-            }
-        }
+                <!-- Time Block -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">11:30 - 12:00</span>
+                        <h3 class="text-xl font-bold mt-1">資料備份與撤收</h3>
+                        <p class="text-stone-500 text-sm">將資料匯出至雲端，清點儀器數量，場地復原。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        // --- 子頁面互動邏輯 ---
-        function showStep(stepNum) {
-            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`step-${stepNum}`).classList.add('active');
-            document.querySelectorAll('.step-btn')[stepNum - 1].classList.add('active');
-        }
+        <!-- Interactive Checklist (Alpine.js) -->
+        <section class="mb-12" x-data="{ 
+            items: [
+                {name: '筆記型電腦 (至少一組/組)', checked: false}, 
+                {name: '防曬/防蚊液', checked: false}, 
+                {name: '飲用水', checked: false}, 
+                {name: '好走的鞋子 (請勿穿拖鞋)', checked: true},
+                {name: '野外記錄本與筆', checked: false}
+            ] 
+        }">
+            <h2 class="text-2xl font-bold mb-6 text-stone-800">個人裝備檢查表</h2>
+            <div class="bg-stone-200 p-6 rounded-xl">
+                <div class="space-y-3">
+                    <template x-for="(item, index) in items" :key="index">
+                        <label class="flex items-center space-x-3 bg-white p-3 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors shadow-sm">
+                            <input type="checkbox" x-model="item.checked" class="w-5 h-5 text-yellow-600 rounded border-gray-300 focus:ring-yellow-500">
+                            <span :class="{'line-through text-stone-400': item.checked, 'text-stone-700': !item.checked}" x-text="item.name" class="text-lg font-medium select-none"></span>
+                        </label>
+                    </template>
+                </div>
+                <div class="mt-4 text-right text-sm text-stone-500">
+                    <span x-text="items.filter(i => i.checked).length"></span> / <span x-text="items.length"></span> 已準備
+                </div>
+            </div>
+        </section>
 
-        // --- 初始化 ---
-        renderSchedule();
+        <!-- Weather Widget Mockup -->
+        <section class="grid md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 class="font-bold text-blue-900 mb-2"><i class="fa-solid fa-cloud-sun-rain"></i> 天氣備案</h3>
+                <p class="text-blue-800 text-sm leading-relaxed">
+                    若當日遇大雨，將取消野外實驗，改於室內進行<b>儀器操作教學</b>與<b>模擬資料處理</b>。請密切注意課程公告群組。
+                </p>
+            </div>
+            <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                <h3 class="font-bold text-green-900 mb-2"><i class="fa-solid fa-download"></i> 預習資料</h3>
+                <ul class="list-disc list-inside text-green-800 text-sm space-y-1">
+                    <li><a href="#" class="underline hover:text-green-600">折射探勘原理.pdf</a></li>
+                    <li><a href="#" class="underline hover:text-green-600">儀器操作手冊_v2.pdf</a></li>
+                </ul>
+            </div>
+        </section>
 
-    </script>
+    </main>
+
+    <footer class="bg-stone-800 text-stone-400 py-6 text-center mt-12">
+        <p class="text-sm">Safety First! 野外實驗請務必聽從助教指揮。</p>
+    </footer>
+
 </body>
 </html>

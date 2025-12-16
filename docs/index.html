@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球物理與資料處理實務課程</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-geo: #27ae60; /* 地球物理代表色 */
+            --accent-data: #2980b9; /* 資料處理代表色 */
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 { margin: 0; font-size: 2.5em; }
+        p.subtitle { opacity: 0.8; margin-top: 10px; }
+
+        .controls {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .btn-all { background-color: var(--primary-color); color: white; }
+        .btn-geo { background-color: white; border: 2px solid var(--accent-geo); color: var(--accent-geo); }
+        .btn-data { background-color: white; border: 2px solid var(--accent-data); color: var(--accent-data); }
+
+        .btn-geo.active, .btn-geo:hover { background-color: var(--accent-geo); color: white; }
+        .btn-data.active, .btn-data:hover { background-color: var(--accent-data); color: white; }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .week-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .week-date { font-weight: bold; color: var(--primary-color); }
+        .week-title { font-size: 1.2em; font-weight: bold; }
+
+        .content-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .topic-box {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 250px;
+        }
+
+        .geo-box { background-color: rgba(39, 174, 96, 0.1); border-left: 3px solid var(--accent-geo); }
+        .data-box { background-color: rgba(41, 128, 185, 0.1); border-left: 3px solid var(--accent-data); }
+
+        .tag {
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .tag-geo { background-color: var(--accent-geo); color: white; }
+        .tag-data { background-color: var(--accent-data); color: white; }
+
+        /* 特殊連結樣式 */
+        .special-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .special-link:hover { background-color: #d35400; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        /* 隱藏/顯示控制 */
+        .hide-geo .geo-box { display: none; }
+        .hide-data .data-box { display: none; }
+        
+        /* 當某一類被隱藏且另一類不存在時，卡片可能會變空，這裡做簡單處理 */
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>地球物理與資料處理實務</h1>
+    <p class="subtitle">課程代碼: GP_DATA_2025 | 結合 Python 與 AI 的地球科學探索</p>
+</header>
+
+<div class="controls">
+    <span>顯示過濾：</span>
+    <button class="btn-all" onclick="filterContent('all')">顯示全部</button>
+    <button class="btn-geo" onclick="filterContent('geo')">僅顯示地球物理</button>
+    <button class="btn-data" onclick="filterContent('data')">僅顯示資料技能</button>
+</div>
+
+<div class="container" id="schedule-container">
+    <!-- 內容將由 JavaScript 動態生成 -->
+</div>
+
+<footer>
+    <p>© 2025 地球物理課程網頁. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // 課程資料庫
+    const courseData = [
+        { week: 1, date: "9/10", title: "課程介紹", geo: "地球物理概要", data: "環境安裝 (Python, VS Code), 帳號申請 (Google, Hugging Face, Github), Colab, Codespace, Dify", note: "上課方式、成績計算" },
+        { week: 2, date: "9/17", title: "基礎工具與折射探勘", geo: "折射探勘學", data: "pygmt, obspy, streamlit, gradio" },
+        { week: 3, date: "9/24", title: "校園野外實驗", geo: "折射探勘實作", data: "野外資料收集", link: "field_work.html", linkText: "👉 進入實驗子網頁" },
+        { week: 4, date: "10/1", title: "專題演講", geo: "地球物理專題演講", data: "" },
+        { week: 5, date: "10/8", title: "互動程式開發", geo: "折射探勘學", data: "Hugging Face Space 製作互動程式" },
+        { week: 6, date: "10/15", title: "重力探勘入門", geo: "重力探勘學", data: "Colab 進階使用" },
+        { week: 7, date: "10/22", title: "協作開發與重力", geo: "重力探勘學", data: "Github 與 Codespace 使用" },
+        { week: 8, date: "10/29", title: "期中考", type: "exam" },
+        { week: 9, date: "11/05", title: "板塊與地震 (一)", geo: "板塊構造與地震", data: "pygmt 繪圖實務" },
+        { week: 10, date: "11/12", title: "板塊與地震 (二)", geo: "板塊構造與地震", data: "pygmt 進階應用" },
+        { week: 11, date: "11/19", title: "板塊與地磁 (一)", geo: "板塊構造與地磁", data: "obspy 地震資料處理" },
+        { week: 12, date: "11/26", title: "板塊與地磁 (二)", geo: "板塊構造與地磁", data: "obspy 進階分析" },
+        { week: 13, date: "12/3", title: "AI 應用與地熱 (一)", geo: "板塊構造與地熱", data: "Gemini API 申請、Dify 應用" },
+        { week: 14, date: "12/10", title: "AI 應用與地熱 (二)", geo: "板塊構造與地熱", data: "Dify 智慧助理實作" },
+        { week: 15, date: "12/17", title: "期末專題發表", type: "exam" },
+        { week: 16, date: "12/24", title: "行憲紀念日", type: "holiday", note: "放假一日" },
+        { week: 17, date: "12/31", title: "自主學習週", geo: "", data: "" },
+        { week: 18, date: "1/7", title: "參訪活動", geo: "大屯火山觀測中心 (暫定)", data: "", type: "trip" }
+    ];
+
+    const container = document.getElementById('schedule-container');
+
+    function renderSchedule() {
+        container.innerHTML = '';
+        courseData.forEach(week => {
+            let html = `
+                <div class="week-card" id="week-${week.week}">
+                    <div class="week-header">
+                        <span class="week-date">第 ${week.week} 週 (${week.date})</span>
+                        <span class="week-title">${week.title}</span>
+                    </div>
+                    <div class="content-section">
+            `;
+
+            // 特殊週次處理 (考試、放假)
+            if (week.type === 'exam' || week.type === 'holiday' || week.type === 'trip') {
+                html += `<div style="width:100%; padding:10px; background:#f9f9f9; color:#555;">${week.note || week.geo || '無特別說明'}</div>`;
+            } else {
+                // 一般課程
+                if (week.geo) {
+                    html += `
+                        <div class="topic-box geo-box">
+                            <span class="tag tag-geo">地球物理知識</span>
+                            <p>${week.geo}</p>
+                            ${week.link ? `<a href="${week.link}" class="special-link">${week.linkText}</a>` : ''}
+                        </div>
+                    `;
+                }
+                if (week.data) {
+                    html += `
+                        <div class="topic-box data-box">
+                            <span class="tag tag-data">資料處理技能</span>
+                            <p>${week.data}</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            html += `</div></div>`;
+            container.innerHTML += html;
+        });
+    }
+
+    function filterContent(type) {
+        const cards = document.querySelectorAll('.week-card');
+        const buttons = document.querySelectorAll('button');
+        
+        // 重置按鈕樣式
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // 重置所有隱藏class
+        container.classList.remove('hide-geo', 'hide-data');
+
+        if (type === 'all') {
+            document.querySelector('.btn-all').classList.add('active');
+        } else if (type === 'geo') {
+            container.classList.add('hide-data');
+            document.querySelector('.btn-geo').classList.add('active');
+        } else if (type === 'data') {
+            container.classList.add('hide-geo');
+            document.querySelector('.btn-data').classList.add('active');
+        }
+    }
+
+    // 初始化
+    renderSchedule();
+    document.querySelector('.btn-all').classList.add('active');
+
+</script>
+
+</body>
+</html>

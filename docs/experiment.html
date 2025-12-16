@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三週：校園野外實驗 (折射探勘)</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* 導航列 */
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581093588402-40e854d6d376?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* 示意背景圖 */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -50px auto 40px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 { border-bottom: 3px solid #e67e22; display: inline-block; padding-bottom: 5px; }
+
+        /* 互動式流程圖 */
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step-btn {
+            flex: 1;
+            padding: 15px;
+            margin: 5px;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .step-btn.active, .step-btn:hover {
+            background: #e67e22;
+            color: white;
+            border-color: #d35400;
+        }
+
+        .step-content {
+            background: #fff8f0;
+            border: 1px solid #e67e22;
+            padding: 20px;
+            border-radius: 5px;
+            display: none; /* 預設隱藏 */
+            animation: fadeIn 0.5s;
+        }
+        .step-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .equip-item {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .equip-icon { font-size: 2em; margin-bottom: 10px; display: block; }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <span>GP_DATA_2025</span>
+    <a href="index.html">← 回主課程頁面</a>
+</nav>
+
+<div class="hero">
+    <h1>校園野外實驗：折射探勘</h1>
+    <p>透過實際操作，體驗地球物理資料的收集過程</p>
+</div>
+
+<div class="container">
+    
+    <!-- 實驗目的 -->
+    <div class="card">
+        <h2>實驗目的</h2>
+        <p>本次實驗將在校園內進行淺層震測折射探勘。主要目標是讓同學熟悉儀器操作、受波器 (Geophone) 的佈設方式，以及震源激發的時序控制。收集到的數據將用於後續課程的 Python (Obspy) 資料處理練習。</p>
+    </div>
+
+    <!-- 儀器介紹 -->
+    <div class="card">
+        <h2>使用儀器</h2>
+        <div class="equipment-list">
+            <div class="equip-item">
+                <span class="equip-icon">🔨</span>
+                <strong>震源 (Source)</strong>
+                <p>大鐵鎚與鐵盤，用於產生人工震波。</p>
+            </div>
+            <div class="equip-item">
+                <span class="equip-icon">📡</span>
+                <strong>受波器 (Geophone)</strong>
+                <p>感測地表振動的傳感器，需垂直插入土中。</p>
+            </div>
+            <div class="equip-item">
+                <span class="equip-icon">💻</span>
+                <strong>震測儀 (Seismograph)</strong>
+                <p>紀錄來自各受波器的訊號並數位化。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 互動實驗流程 -->
+    <div class="card">
+        <h2>互動實驗流程 (點擊步驟查看詳情)</h2>
+        <div class="process-container">
+            <div class="step-btn active" onclick="showStep(1)">1. 測線佈置</div>
+            <div class="step-btn" onclick="showStep(2)">2. 連接儀器</div>
+            <div class="step-btn" onclick="showStep(3)">3. 激發震源</div>
+            <div class="step-btn" onclick="showStep(4)">4. 資料品管</div>
+        </div>
+
+        <div id="step-1" class="step-content active">
+            <h3>步驟 1: 測線佈置 (Layout)</h3>
+            <p>首先選定校園內平坦且干擾較少的草地。</p>
+            <ul>
+                <li>拉出捲尺確定測線長度 (例如 24公尺)。</li>
+                <li>每隔固定間距 (例如 2公尺) 插設一顆受波器。</li>
+                <li><strong>注意：</strong>受波器必須垂直且緊密接觸土壤，以確保訊號耦合良好。</li>
+            </ul>
+        </div>
+
+        <div id="step-2" class="step-content">
+            <h3>步驟 2: 連接儀器 (Connection)</h3>
+            <p>將受波器的傳輸線彙整至集線箱。</p>
+            <ul>
+                <li>檢查所有接頭是否乾燥、乾淨。</li>
+                <li>將訊號線連接至主要震測儀主機。</li>
+                <li>開啟筆記型電腦與震測軟體，進行連線測試 (Line Test) 確保每個頻道均有反應。</li>
+            </ul>
+        </div>
+
+        <div id="step-3" class="step-content">
+            <h3>步驟 3: 激發震源 (Shooting)</h3>
+            <p>開始進行資料收集。</p>
+            <ul>
+                <li>操作員在指定位置 (例如測線起點) 準備大鐵鎚。</li>
+                <li>敲擊鐵盤的同時，觸發開關會送出訊號給儀器開始紀錄 (Time zero)。</li>
+                <li>通常同一點需敲擊多次 (Stacking) 以消除隨機雜訊，增強訊號。</li>
+            </ul>
+        </div>
+
+        <div id="step-4" class="step-content">
+            <h3>步驟 4: 資料品管 (QC)</h3>
+            <p>現場即時檢查。</p>
+            <ul>
+                <li>觀察螢幕上的波形，確認是否能看到明顯的初達波 (First arrival)。</li>
+                <li>若雜訊過大 (如有人路過或風大)，需重新敲擊。</li>
+                <li>確認資料無誤後存檔，準備下週使用 Python 進行處理。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" class="back-btn">回到課程總表</a>
+    </div>
+
+</div>
+
+<script>
+    function showStep(stepNum) {
+        // 隱藏所有內容
+        document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+        // 移除所有按鈕 active 狀態
+        document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
+
+        // 顯示選定內容與按鈕狀態
+        document.getElementById(`step-${stepNum}`).classList.add('active');
+        // 因為按鈕沒有 ID，我們透過索引操作 (index 從 0 開始，所以要 -1)
+        document.querySelectorAll('.step-btn')[stepNum - 1].classList.add('active');
+    }
+</script>
+
+</body>
+</html>

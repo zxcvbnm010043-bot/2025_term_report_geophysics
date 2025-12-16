@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三週：校園野外震測實驗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .pattern-dots { background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px); background-size: 20px 20px; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans">
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-stone-800 to-stone-600 text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pattern-dots"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <!-- 回首頁的連結 -->
+            <a href="index.html" class="absolute top-0 left-4 mt-6 flex items-center gap-2 text-stone-300 hover:text-white hover:underline transition-all">
+                <i class="fa-solid fa-arrow-left"></i> 
+                <span>回課程主頁</span>
+            </a>
+            
+            <span class="bg-yellow-500 text-stone-900 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block shadow-lg mt-8 md:mt-0">Week 3</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">校園野外震測實驗</h1>
+            <p class="text-xl text-stone-200">Seismic Refraction Survey</p>
+            <div class="mt-8 flex justify-center gap-6 text-sm md:text-base">
+                <div class="flex items-center gap-2"><i class="fa-regular fa-calendar"></i> 9月24日 (週二)</div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> 校園大草坪 (集合點)</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
+        <!-- 實驗內容 -->
+        <section class="mb-12 bg-white p-8 rounded-xl shadow-md border-l-8 border-yellow-500">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-yellow-500"></i> 實驗目的
+            </h2>
+            <p class="leading-relaxed text-stone-600 text-lg">
+                本週課程將走出教室，進行實際的<b>折射震測 (Seismic Refraction)</b>。學生將學習如何佈設受波器 (Geophones)、操作震測儀器，並利用人工震源 (大鎚) 產生震波。
+            </p>
+        </section>
+
+        <!-- 當日流程 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-stone-800">當日流程</h2>
+            <div class="relative border-l-4 border-stone-300 ml-4 space-y-8">
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">09:10 - 09:30</span>
+                        <h3 class="text-xl font-bold mt-1">集合與分組</h3>
+                        <p class="text-stone-500 text-sm">地點：系館前廣場。請確認小組成員到齊。</p>
+                    </div>
+                </div>
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-stone-300 rounded-full group-hover:bg-yellow-500 transition-colors border-4 border-stone-50"></div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span class="text-sm font-bold text-yellow-600">09:30 - 10:30</span>
+                        <h3 class="text-xl font-bold mt-1">儀器架設</h3>
+                        <p class="text-stone-500 text-sm">鋪設測線、埋設 Geophones、連接主機。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 裝備檢查表 -->
+        <section class="mb-12" x-data="{ items: [{name: '筆記型電腦', checked: false}, {name: '防曬/防蚊液', checked: false}, {name: '飲用水', checked: false}, {name: '好走的鞋子', checked: true}, {name: '野外記錄本', checked: false}] }">
+            <h2 class="text-2xl font-bold mb-6 text-stone-800">裝備檢查</h2>
+            <div class="bg-stone-200 p-6 rounded-xl">
+                <div class="space-y-3">
+                    <template x-for="(item, index) in items" :key="index">
+                        <label class="flex items-center space-x-3 bg-white p-3 rounded-lg cursor-pointer hover:bg-stone-50 transition-colors shadow-sm">
+                            <input type="checkbox" x-model="item.checked" class="w-5 h-5 text-yellow-600 rounded">
+                            <span :class="{'line-through text-stone-400': item.checked}" x-text="item.name" class="text-lg font-medium"></span>
+                        </label>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="bg-stone-800 text-stone-400 py-6 text-center mt-12">
+        <p class="text-sm">Safety First! 野外實驗請務必聽從助教指揮。</p>
+    </footer>
+</body>
+</html>

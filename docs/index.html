@@ -9,6 +9,23 @@
     <style>
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .transition-all { transition: all 0.3s ease; }
+
+        /* --- 新增動畫效果 --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-card {
+            opacity: 0; /* 一開始隱藏，避免閃爍 */
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
@@ -59,7 +76,6 @@
                 geo: "地球物理概要", 
                 data: "Python環境, Google/HF/Github帳號, Colab, Codespace, Dify", 
                 special: false,
-                // 新增：連結到 Hugging Face
                 link: "https://huggingface.co/spaces/Lee010043/Geophysics-w1",
                 linkText: "進入課程互動頁面" 
             },
@@ -71,7 +87,6 @@
                 geo: "折射探勘實作", 
                 data: null, 
                 special: true, 
-                // 維持：連結到子網頁
                 link: "week3_field.html",
                 linkText: "進入野外實驗頁面"
             },
@@ -96,6 +111,10 @@
 
         function renderCourses(type) {
             grid.innerHTML = '';
+            
+            // 用來計算當前顯示第幾個卡片，以設定延遲時間
+            let visibleCount = 0;
+
             schedule.forEach(item => {
                 let show = true;
                 
@@ -116,19 +135,12 @@
                 if (type === 'geo') dataContent = ''; 
                 if (type === 'data') geoContent = '';
 
-                // --- 連結按鈕邏輯 ---
                 let linkButton = '';
                 if(item.link) {
-                    // 如果有設定 linkText 就用設定的，不然預設顯示 "查看詳情"
                     const btnText = item.linkText ? item.linkText : "查看詳情";
-                    
-                    // 判斷按鈕顏色 (野外實驗用黃色，其他用藍色)
                     let btnColor = "bg-slate-700 hover:bg-slate-800";
-                    if(item.special === true) {
-                         btnColor = "bg-amber-500 hover:bg-amber-600";
-                    }
+                    if(item.special === true) { btnColor = "bg-amber-500 hover:bg-amber-600"; }
 
-                    // target="_blank" 讓它開新視窗
                     linkButton = `<a href="${item.link}" target="_blank" class="block mt-4 text-center ${btnColor} text-white font-bold py-2 px-4 rounded shadow-md hover:shadow-lg transition-all transform active:scale-95">
                         <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> ${btnText}
                     </a>`;
@@ -136,7 +148,12 @@
 
                 if (show) {
                     const card = document.createElement('div');
-                    card.className = `${cardClass} p-5 rounded-lg shadow-sm card-hover relative transition-all flex flex-col justify-between`;
+                    // 加入 animate-card class
+                    card.className = `${cardClass} p-5 rounded-lg shadow-sm card-hover relative transition-all flex flex-col justify-between animate-card`;
+                    
+                    // 設定動畫延遲：每張卡片延後 0.05 秒出現
+                    card.style.animationDelay = `${visibleCount * 0.05}s`;
+
                     card.innerHTML = `
                         <div>
                             <div class="flex justify-between items-start mb-3">
@@ -157,6 +174,7 @@
                         ${linkButton}
                     `;
                     grid.appendChild(card);
+                    visibleCount++; // 計數器 +1
                 }
             });
         }
@@ -176,5 +194,3 @@
     </script>
 </body>
 </html>
-
-

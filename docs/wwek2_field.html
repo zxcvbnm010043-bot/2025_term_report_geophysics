@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地震折射探勘互動教學</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; }
+        .math-block { background: #f1f5f9; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #3b82f6; overflow-x: auto; }
+        .step-card { transition: all 0.3s ease; }
+        .step-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .highlight { color: #2563eb; font-weight: 700; }
+        .hidden-step { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .active-step { display: block; opacity: 1; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- 導航列 -->
+    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold tracking-tight text-blue-400">Seismic Refraction Lab</span>
+            <div class="space-x-4 text-sm">
+                <a href="#theory" class="hover:text-blue-400">基本理論</a>
+                <a href="#derivation" class="hover:text-blue-400">公式推導</a>
+                <a href="#crossover" class="hover:text-blue-400">交叉距離</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 標題區域 -->
+    <header class="bg-gradient-to-r from-slate-900 to-blue-900 text-white py-20 px-4 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">地震折射探勘：臨界折射波解析</h1>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto opacity-90">深入探討雙層水平地質模型下的地震波傳播行為、走時公式推導與關鍵交叉距離 $X_{cr}$ 的應用。</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 space-y-24">
+
+        <!-- 基本理論節點 -->
+        <section id="theory" class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 border-b-4 border-blue-500 pb-2 inline-block">1. 物理模型基礎</h2>
+                <p class="mb-4 leading-relaxed text-lg">
+                    地震折射法建立在 <span class="highlight">斯乃爾定律 (Snell's Law)</span> 的基礎之上。當下層速度 $V_2$ 大於上層速度 $V_1$ 時，波會在界面產生折射。
+                </p>
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h3 class="font-bold text-blue-800 mb-2">關鍵概念：臨界角 (Critical Angle)</h3>
+                    <p class="text-sm text-blue-700">當入射角達到臨界角 $i_c$ 時，折射波將沿著界面傳遞，形成所謂的「頭波 (Head Wave)」。</p>
+                    <div class="math-block font-mono text-center text-xl">
+                        sin(i<sub>c</sub>) = V<sub>1</sub> / V<sub>2</sub>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-2xl bg-white p-4 border border-slate-200">
+                <img src="https://eeclass.utaipei.edu.tw/filedownload/2083220" alt="地震折射路徑圖" class="w-full h-auto">
+                <p class="text-center text-sm text-slate-500 mt-4 text-xs italic">圖 1：地震波路徑分解與層狀模型 (含臨界路徑標註)</p>
+            </div>
+        </section>
+
+        <!-- 走時公式推導 (互動式) -->
+        <section id="derivation">
+            <h2 class="text-3xl font-bold mb-8 text-center">臨界折射波走時公式推導</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 step-card bg-white p-8 rounded-2xl border border-slate-200">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                        路徑與時間分解
+                    </h3>
+                    <p class="text-slate-600 mb-4">總走時 $T$ 是下行時間、界面滑行時間與上行時間的總和：</p>
+                    <div class="math-block text-lg">
+                        T<sub>refr</sub> = (L<sub>1</sub> / V<sub>1</sub>) + (L<sub>2</sub> / V<sub>2</sub>) + (L<sub>3</sub> / V<sub>1</sub>)
+                    </div>
+                    <button onclick="toggleStep('step2')" class="mt-4 inline-flex items-center text-blue-600 font-bold hover:text-blue-800">
+                        展開計算過程圖示與幾何代換 ↓
+                    </button>
+                    
+                    <div id="step2" class="hidden-step mt-6 pt-6 border-t border-slate-100">
+                        <h3 class="text-xl font-bold mb-4 flex items-center text-blue-700">詳細計算推導</h3>
+                        <div class="grid md:grid-cols-2 gap-6 items-start">
+                            <div class="space-y-4">
+                                <p class="text-slate-600">利用厚度 $h$ 與 $\cos(i_c)$ 進行幾何變量代換：</p>
+                                <div class="math-block text-sm">
+                                    L<sub>1</sub> = L<sub>3</sub> = h / cos(i<sub>c</sub>)<br>
+                                    L<sub>2</sub> = x - 2h·tan(i<sub>c</sub>)
+                                </div>
+                                <p class="text-slate-600">將上述代入 $T$ 公式並化簡三角函數項：</p>
+                                <div class="math-block bg-blue-50 border-blue-400">
+                                    T<sub>refr</sub> = (x / V<sub>2</sub>) + (2h · cos(i<sub>c</sub>) / V<sub>1</sub>)
+                                </div>
+                                <p class="text-[13px] text-slate-500 italic">其中 cos(i<sub>c</sub>) = √(1 - sin²(i<sub>c</sub>)) = √(V₂² - V₁²) / V₂</p>
+                            </div>
+                            <!-- 插入 GitHub 提供與本地的上載圖片 -->
+                            <div class="space-y-4">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-200 shadow-sm">
+                                    <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/image.png" alt="計算過程推導圖" class="w-full h-auto rounded border border-slate-200" onerror="this.src='image_4a46c4.jpg'">
+                                    <p class="text-[10px] text-center mt-2 text-slate-400">計算過程：路徑積分與幾何變量代換 (Ref: GitHub Source)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="toggleStep('step3')" class="mt-6 text-blue-600 font-bold hover:underline">顯示最終線性方程與截距 ↓</button>
+                    </div>
+
+                    <div id="step3" class="hidden-step mt-6 pt-6 border-t border-slate-100">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-700 font-mono">最終走時曲線公式 (T-X Equation)</h3>
+                        <div class="bg-slate-900 text-white p-6 rounded-xl text-center text-2xl shadow-inner font-mono border-b-4 border-blue-500">
+                            T = (1/V<sub>2</sub>)·x + T<sub>i</sub>
+                        </div>
+                        <div class="mt-4 grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="block font-bold text-blue-800">斜率 (Slope) = 1/V<sub>2</sub></span>
+                                <span class="text-xs text-slate-500">代表下層折射層的波速倒數</span>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="block font-bold text-indigo-800">截距時間 (Intercept) = T<sub>i</sub></span>
+                                <span class="text-xs text-slate-500">T<sub>i</sub> = 2h√(V₂² - V₁²) / (V₁V₂)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 側邊加入走時曲線示意圖 -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center">
+                    <img src="image_4a5226.jpg" alt="走時曲線圖與座標分析" class="w-full h-auto rounded-lg mb-4">
+                    <p class="text-[10px] text-center text-slate-400">圖 2：直接波 (V₁) 與折射波 (V₂) 之 T-X 走時曲線對比圖</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 交叉距離 Xcr 解析 -->
+        <section id="crossover" class="bg-slate-900 text-white rounded-3xl p-8 md:p-16 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 opacity-5 rounded-full -mr-32 -mt-32"></div>
+            <div class="max-w-4xl mx-auto relative z-10">
+                <h2 class="text-4xl font-bold mb-8 text-blue-400">交叉距離 (Crossover Distance, $X_{cr}$)</h2>
+                <div class="grid md:grid-cols-5 gap-12 items-start">
+                    <div class="md:col-span-3 space-y-6 text-slate-300 text-lg">
+                        <p>
+                            <span class="text-white font-bold">物理意義：</span> 此點為地震波觀測中的「超車點」。
+                        </p>
+                        <p class="bg-slate-800 p-6 rounded-lg border-l-4 border-blue-400 italic text-base">
+                            「當 $x < X_{cr}$ 時，直接波路徑短，最先抵達；當 $x > X_{cr}$ 時，雖然折射波路徑較長，但其在高速層 ($V_2$) 傳遞的時間優勢使其領先抵達。」
+                        </p>
+                        
+                        <h3 class="text-2xl font-bold text-white mt-12 mb-4">$X_{cr}$ 的推導邏輯</h3>
+                        <ul class="list-disc list-inside space-y-3 text-base">
+                            <li>令 <code class="text-blue-300">T_direct = T_refracted</code></li>
+                            <li>即 <code class="text-blue-300">x/V₁ = x/V₂ + Tᵢ</code></li>
+                            <li>解方程式： <code class="text-blue-300">x(1/V₁ - 1/V₂) = Tᵢ</code></li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-2 space-y-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                             <img src="https://eeclass.utaipei.edu.tw/filedownload/2083220" alt="交叉距離示意圖" class="w-full h-auto opacity-90 rounded shadow-lg">
+                             <p class="text-[10px] text-center mt-3 text-slate-500">圖 3：交叉距離在座標軸與地質路徑上的位置 (Source: UTaipei)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-blue-600 text-white p-8 rounded-2xl text-center shadow-2xl transform hover:scale-[1.02] transition-transform">
+                    <p class="text-sm uppercase tracking-widest mb-2 opacity-80">交叉距離最終公式</p>
+                    <h4 class="text-4xl md:text-5xl font-bold font-mono">X<sub>cr</sub> = 2h · √[(V₂ + V₁) / (V₂ - V₁)]</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- 總結與計算器邏輯 -->
+        <section class="text-center pb-20">
+            <h2 class="text-2xl font-bold mb-8 text-slate-700">地球物理參數反算</h2>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-blue-300 transition-colors">
+                    <p class="text-sm text-slate-500 mb-4">方法 A：已知截距時間 ($T_i$)</p>
+                    <p class="font-bold text-2xl text-blue-700 font-mono">h = (T<sub>i</sub>V₁V₂) / [2√(V₂² - V₁²)]</p>
+                </div>
+                <div class="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-indigo-300 transition-colors">
+                    <p class="text-sm text-slate-500 mb-4">方法 B：已知交叉距離 ($X_{cr}$)</p>
+                    <p class="font-bold text-2xl text-indigo-700 font-mono">h = (X<sub>cr</sub>/2) · √[(V₂ - V₁) / (V₂ + V₁)]</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 py-12 text-center text-slate-500 text-sm border-t border-slate-800">
+        <p class="mb-2">© 2025 地震折射探勘互動教學資源 - 數位地球物理實驗室</p>
+        <p class="opacity-50 text-[10px]">Image Sources: UTaipei eeClass & GitHub Repo Repository</p>
+    </footer>
+
+    <script>
+        function toggleStep(stepId) {
+            const step = document.getElementById(stepId);
+            if (step.classList.contains('active-step')) {
+                step.classList.remove('active-step');
+                step.classList.add('hidden-step');
+            } else {
+                step.classList.remove('hidden-step');
+                step.classList.add('active-step');
+                step.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
+</body>
+</html>

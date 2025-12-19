@@ -50,12 +50,31 @@
     </footer>
 
     <script>
-        // 注意：這裡的 link 必須與您的檔案名稱完全一致 (大小寫敏感)
+        // --- 課程資料設定 ---
         const schedule = [
-            { week: 1, date: "9/10", title: "課程介紹", geo: "地球物理概要", data: "Python環境, Google/HF/Github帳號, Colab, Codespace, Dify", special: false },
+            { 
+                week: 1, 
+                date: "9/10", 
+                title: "課程介紹", 
+                geo: "地球物理概要", 
+                data: "Python環境, Google/HF/Github帳號, Colab, Codespace, Dify", 
+                special: false,
+                // 新增：連結到 Hugging Face
+                link: "https://huggingface.co/spaces/Lee010043/Geophysics-w1",
+                linkText: "進入課程互動頁面" 
+            },
             { week: 2, date: "9/17", title: "折射與工具", geo: "折射探勘學", data: "PyGMT, ObsPy, Streamlit, Gradio", special: false },
-            // 第三週連結設定
-            { week: 3, date: "9/24", title: "校園野外實驗", geo: "折射探勘實作", data: null, special: true, link: "week3_field.html" },
+            { 
+                week: 3, 
+                date: "9/24", 
+                title: "校園野外實驗", 
+                geo: "折射探勘實作", 
+                data: null, 
+                special: true, 
+                // 維持：連結到子網頁
+                link: "week3_field.html",
+                linkText: "進入野外實驗頁面"
+            },
             { week: 4, date: "10/1", title: "專題演講", geo: "地球物理專題演講", data: null, special: "guest" },
             { week: 5, date: "10/8", title: "折射與互動程式", geo: "折射探勘學", data: "Hugging Face Space 製作互動程式", special: false },
             { week: 6, date: "10/15", title: "重力與雲端運算", geo: "重力探勘學", data: "Colab 使用", special: false },
@@ -97,10 +116,22 @@
                 if (type === 'geo') dataContent = ''; 
                 if (type === 'data') geoContent = '';
 
+                // --- 連結按鈕邏輯 ---
                 let linkButton = '';
                 if(item.link) {
-                    // 這裡產生連結按鈕
-                    linkButton = `<a href="${item.link}" class="block mt-4 text-center bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded shadow-md hover:shadow-lg transition-all transform active:scale-95"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> 進入野外實驗頁面</a>`;
+                    // 如果有設定 linkText 就用設定的，不然預設顯示 "查看詳情"
+                    const btnText = item.linkText ? item.linkText : "查看詳情";
+                    
+                    // 判斷按鈕顏色 (野外實驗用黃色，其他用藍色)
+                    let btnColor = "bg-slate-700 hover:bg-slate-800";
+                    if(item.special === true) {
+                         btnColor = "bg-amber-500 hover:bg-amber-600";
+                    }
+
+                    // target="_blank" 讓它開新視窗
+                    linkButton = `<a href="${item.link}" target="_blank" class="block mt-4 text-center ${btnColor} text-white font-bold py-2 px-4 rounded shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> ${btnText}
+                    </a>`;
                 }
 
                 if (show) {

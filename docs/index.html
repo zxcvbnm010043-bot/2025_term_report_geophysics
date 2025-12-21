@@ -59,7 +59,7 @@
         <p>&copy; 2024 地球物理學系 Course Webpage.</p>
     </footer>
 
-    <script>
+   <script>
         // --- 課程資料設定 ---
         const schedule = [
             { 
@@ -69,7 +69,6 @@
                 geo: "地球物理概要", 
                 data: "Python環境, Google/HF/Github帳號, Colab, Codespace, Dify", 
                 special: false,
-                // 修改處：這裡改用 links 陣列，可以放多個按鈕
                 links: [
                     {
                         text: "進入課程互動頁面",
@@ -92,14 +91,16 @@
                 geo: "折射探勘學", 
                 data: "PyGMT, ObsPy, Streamlit, Gradio", 
                 special: false,
-
+                // --- 這裡修正了 Week 2 的結構 ---
                 links: [
-            {
-                text: "進入折射與工具頁面",
-                url:"wwek2_field.html",
-                color: "bg-emerald-600 hover:bg-emerald-700",
-                icon: "fa-book-open"
-            },
+                    {
+                        text: "進入折射與工具頁面",
+                        url: "week2_field.html",  // 已修正拼字 (原本是 wwek2)
+                        color: "bg-emerald-600 hover:bg-emerald-700",
+                        icon: "fa-book-open"
+                    }
+                ]
+            }, 
             { 
                 week: 3, 
                 date: "9/24", 
@@ -107,7 +108,6 @@
                 geo: "折射探勘實作", 
                 data: null, 
                 special: true, 
-                // 單一連結仍可支援，或寫成 array 也可以
                 links: [
                     {
                         text: "進入野外實驗頁面",
@@ -125,10 +125,10 @@
             { week: 9, date: "11/05", title: "板塊與繪圖 I", geo: "板塊構造與地震", data: "PyGMT", special: false },
             { week: 10, date: "11/12", title: "板塊與繪圖 II", geo: "板塊構造與地震", data: "PyGMT", special: false },
             { week: 11, date: "11/19", title: "地磁與地震波 I", geo: "板塊構造與地磁", data: "ObsPy", special: false },
-            { week: 12, date: "11/26", title: "地熱與 AI API", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
-            { week: 13, date: "12/3", title: "地熱與 AI 應用", geo: "板塊構造與地熱", data: "Dify", special: false  },
-            { week: 14, date: "12/10", title: "黃有志博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
-            { week: 15, date: "12/17", title: "廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest" },
+            { week: 12, date: "11/26", title: "地磁與地震波 II", geo: "板塊構造與地磁", data: "ObsPy", special: false  },
+            { week: 13, date: "12/3", title: "地熱與 AI API", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
+            { week: 14, date: "12/10", title: "地熱與 AI 應用", geo: "板塊構造與地熱", data: "Dify", special: false  },
+            { week: 15, date: "12/17", title: "黃有志博士/廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
             { week: 16, date: "12/24", title: "期末專題發表", geo: null, data: null, special: "exam" },
             { week: 17, date: "12/31", title: "彈性學習週", geo: null, data: null, special: "holiday" },
             { week: 18, date: "1/7", title: "校外參訪", geo: "參訪大屯火山觀測中心 (暫定)", data: null, special: "trip" },
@@ -136,6 +136,7 @@
 
         const grid = document.getElementById('course-grid');
 
+        // ... (後面的 renderCourses 函式保持不變) ...
         function renderCourses(type) {
             grid.innerHTML = '';
             let visibleCount = 0;
@@ -163,7 +164,6 @@
                 // --- 產生連結按鈕 (支援多個) ---
                 let buttonsHtml = '';
                 
-                // 優先檢查是否有 links 陣列
                 if (item.links && item.links.length > 0) {
                     buttonsHtml = '<div class="mt-4 flex flex-col gap-2">';
                     item.links.forEach(link => {
@@ -174,7 +174,6 @@
                     });
                     buttonsHtml += '</div>';
                 } 
-                // 向下相容：如果只有舊的 link 屬性
                 else if (item.link) {
                     const btnText = item.linkText || "查看詳情";
                     let btnColor = "bg-slate-700 hover:bg-slate-800";
@@ -231,5 +230,6 @@
     </script>
 </body>
 </html>
+
 
 

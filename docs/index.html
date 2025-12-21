@@ -183,8 +183,40 @@
                 ]
             },
             { week: 8, date: "10/29", title: "期中考", geo: null, data: null, special: "exam" },
-            { week: 9, date: "11/05", title: "板塊與繪圖 I", geo: "板塊構造與地震", data: "PyGMT", special: false },
-            { week: 10, date: "11/12", title: "板塊與繪圖 II", geo: "板塊構造與地震", data: "PyGMT", special: false },
+            { 
+                week: 9, 
+                date: "11/05", 
+                title: "板塊與繪圖 I", 
+                geo: "板塊構造與地震", 
+                data: "PyGMT", 
+                special: false,
+                // ---新增第九週的連結(Github Notebook)---
+                links:[
+                    {
+                        text: "查看PyGMT繪圖程式 Notebook",
+                        url: "https://github.com/zxcvbnm010043-bot/plot_plate_boundary_pygmt/blob/main/U11310009_HW_10_Plate_boundary.ipynb",
+                        color: "bg-gray-700 hover:bg-gray-800",
+                        icon: "fa-file-code"
+                    }
+                ]
+            },
+            { 
+                week: 10, 
+                date: "11/12", 
+                title: "板塊與繪圖 II", 
+                geo: "板塊構造與地震", 
+                data: "PyGMT", 
+                special: false,
+                //---新增第十週連結  (Github Page)---
+                 links: [
+                    {
+                        text: "印度板塊的火山與地震 ",
+                        url: "https://zxcvbnm010043-bot.github.io/plot_plate_boundary_pygmt/",
+                        color: "bg-teal-600 hover:bg-teal-700",
+                        icon: "fa-globe"
+                    }
+                ]
+            },
             { week: 11, date: "11/19", title: "地磁與地震波 I", geo: "板塊構造與地磁", data: "ObsPy", special: false },
             { week: 12, date: "11/26", title: "地磁與地震波 II", geo: "板塊構造與地磁", data: "ObsPy", special: false  },
             { week: 13, date: "12/3", title: "地熱與 AI API", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
@@ -290,3 +322,4 @@
     </script>
 </body>
 </html>
+

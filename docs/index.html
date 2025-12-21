@@ -123,11 +123,10 @@
                 geo: "地球物理專題演講", 
                 data: null, 
                 special: "guest",
-                // --- 新增第四週連結 ---
                 links: [
                     {
                         text: "進入專題演講頁面",
-                        url: "week4_field.html", // 請確認檔案已上傳至根目錄
+                        url: "week4_field.html",
                         color: "bg-purple-600 hover:bg-purple-700",
                         icon: "fa-microphone"
                     }
@@ -140,7 +139,6 @@
                 geo: "折射探勘學", 
                 data: "Hugging Face Space 製作互動程式", 
                 special: false,
-                // --- 新增第五週連結 ---
                 links: [
                     {
                         text: "進入互動程式",
@@ -150,8 +148,40 @@
                     }
                 ]
             },
-            { week: 6, date: "10/15", title: "重力與雲端運算", geo: "重力探勘學", data: "Colab 使用", special: false },
-            { week: 7, date: "10/22", title: "重力與版控", geo: "重力探勘學", data: "Github 與 Codespace 使用", special: false },
+            { 
+                week: 6, 
+                date: "10/15", 
+                title: "重力與雲端運算", 
+                geo: "重力探勘學", 
+                data: "Colab 使用", 
+                special: false,
+                // --- 新增第六週連結 (GitHub Notebook) ---
+                links: [
+                    {
+                        text: "查看重力計算 Notebook",
+                        url: "https://github.com/zxcvbnm010043-bot/HW7_U11310009_calculate_gravity-/blob/main/HW7_U11310009.ipynb",
+                        color: "bg-gray-700 hover:bg-gray-800",
+                        icon: "fa-file-code"
+                    }
+                ]
+            },
+            { 
+                week: 7, 
+                date: "10/22", 
+                title: "重力與版控", 
+                geo: "重力探勘學", 
+                data: "Github 與 Codespace 使用", 
+                special: false,
+                // --- 新增第七週連結 (GitHub Pages) ---
+                links: [
+                    {
+                        text: "進入重力計算成果網頁",
+                        url: "https://zxcvbnm010043-bot.github.io/HW7_U11310009_calculate_gravity-/",
+                        color: "bg-teal-600 hover:bg-teal-700",
+                        icon: "fa-globe"
+                    }
+                ]
+            },
             { week: 8, date: "10/29", title: "期中考", geo: null, data: null, special: "exam" },
             { week: 9, date: "11/05", title: "板塊與繪圖 I", geo: "板塊構造與地震", data: "PyGMT", special: false },
             { week: 10, date: "11/12", title: "板塊與繪圖 II", geo: "板塊構造與地震", data: "PyGMT", special: false },

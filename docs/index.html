@@ -74,7 +74,7 @@
                         text: "進入課程互動頁面",
                         url: "https://huggingface.co/spaces/Lee010043/Geophysics-w1",
                         color: "bg-indigo-600 hover:bg-indigo-700",
-                        icon: "fa-robot"
+                        icon: "fa-robot" //網頁打開類型(hugging face連結)
                     },
                     {
                         text: "地球物理課程網頁",
@@ -93,10 +93,10 @@
                 special: false,
                 links: [
                     {
-                        text: "進入折射與工具頁面",
-                        url: "week2_field.html",
-                        color: "bg-emerald-600 hover:bg-emerald-700",
-                        icon: "fa-book-open"
+                        text: "進入折射與工具頁面", //子網頁標題
+                        url: "week2_field.html", //子網頁連結
+                        color: "bg-emerald-600 hover:bg-emerald-700", //子網頁點選區域顏色與分類
+                        icon: "fa-book-open" //網頁打開類型(從github中的html尋找)
                     }
                 ]
             }, 
@@ -109,10 +109,10 @@
                 special: true, 
                 links: [
                     {
-                        text: "進入野外實驗頁面",
+                        text: "進入野外實驗頁面", 
                         url: "week3_field.html",
                         color: "bg-amber-500 hover:bg-amber-600",
-                        icon: "fa-person-digging"
+                        icon: "fa-person-digging"  ////網頁打開類型(從github中的html尋找)
                     }
                 ]
             },
@@ -128,7 +128,7 @@
                         text: "進入專題演講頁面",
                         url: "week4_field.html",
                         color: "bg-purple-600 hover:bg-purple-700",
-                        icon: "fa-microphone"
+                        icon: "fa-microphone" //網頁打開類型(從github中的html尋找)
                     }
                 ]
             },
@@ -144,7 +144,7 @@
                         text: "進入互動程式",
                         url: "https://huggingface.co/spaces/Lee010043/FreeAir_Gravity",
                         color: "bg-indigo-600 hover:bg-indigo-700",
-                        icon: "fa-robot"
+                        icon: "fa-robot" //網頁打開類型(hugging face 連結)
                     }
                 ]
             },
@@ -161,7 +161,7 @@
                         text: "查看重力計算 Notebook",
                         url: "https://github.com/zxcvbnm010043-bot/HW7_U11310009_calculate_gravity-/blob/main/HW7_U11310009.ipynb",
                         color: "bg-gray-700 hover:bg-gray-800",
-                        icon: "fa-file-code"
+                        icon: "fa-file-code" //網頁打開類型(從github notebook)
                     }
                 ]
             },
@@ -178,7 +178,7 @@
                         text: "進入重力計算成果網頁",
                         url: "https://zxcvbnm010043-bot.github.io/HW7_U11310009_calculate_gravity-/",
                         color: "bg-teal-600 hover:bg-teal-700",
-                        icon: "fa-globe"
+                        icon: "fa-globe"  //網頁打開類型(從github notebook)
                     }
                 ]
             },
@@ -196,7 +196,7 @@
                         text: "查看PyGMT繪圖程式 Notebook",
                         url: "https://github.com/zxcvbnm010043-bot/plot_plate_boundary_pygmt/blob/main/U11310009_HW_10_Plate_boundary.ipynb",
                         color: "bg-gray-700 hover:bg-gray-800",
-                        icon: "fa-file-code"
+                        icon: "fa-file-code" //網頁打開類型(從github notebook)
                     }
                 ]
             },
@@ -213,15 +213,15 @@
                         text: "印度板塊的火山與地震 ",
                         url: "https://zxcvbnm010043-bot.github.io/plot_plate_boundary_pygmt/",
                         color: "bg-teal-600 hover:bg-teal-700",
-                        icon: "fa-globe"
+                        icon: "fa-globe" //網頁打開類型(從github notebook)
                     }
                 ]
             },
-            { week: 11, date: "11/19", title: "地磁與地震波 I", geo: "板塊構造與地磁", data: "ObsPy", special: false },
-            { week: 12, date: "11/26", title: "地磁與地震波 II", geo: "板塊構造與地磁", data: "ObsPy", special: false  },
-            { week: 13, date: "12/3", title: "地熱與 AI API", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
-            { week: 14, date: "12/10", title: "地熱與 AI 應用", geo: "板塊構造與地熱", data: "Dify", special: false  },
-            { week: 15, date: "12/17", title: "黃有志博士/廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
+            { week: 11, date: "11/19", title: "地磁與地震波", geo: "板塊構造與地磁", data: "ObsPy", special: false },
+            { week: 12, date: "11/26", title: "地球的熱分布", geo: "板塊構造與地磁", data: "ObsPy", special: false  },
+            { week: 13, date: "12/3", title: "微震監測、地熱探勘(大地電磁與人工智慧)", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
+            { week: 14, date: "12/10", title: "黃有志博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
+            { week: 15, date: "12/17", title: "廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
             { week: 16, date: "12/24", title: "期末專題發表", geo: null, data: null, special: "exam" },
             { week: 17, date: "12/31", title: "彈性學習週", geo: null, data: null, special: "holiday" },
             { week: 18, date: "1/7", title: "校外參訪", geo: "參訪大屯火山觀測中心 (暫定)", data: null, special: "trip" },
@@ -322,4 +322,5 @@
     </script>
 </body>
 </html>
+
 

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業六：甘禮有博士演講心得 - 李政暟</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --earth-orange: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #020617;
+            color: var(--text-main);
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 投影片容器 */
+        .slide-container {
+            width: 95vw;
+            max-width: 1280px;
+            min-height: 720px;
+            margin: 40px auto;
+            background-color: var(--primary-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        /* 背景放射狀裝飾 */
+        .slide-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .content-wrapper { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; flex-grow: 1; }
+
+        /* 標題樣式 */
+        .slide-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .slide-title span { font-size: 18px; color: var(--text-dim); font-weight: 400; margin-left: auto; }
+
+        /* 網格佈局 */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            flex-grow: 1;
+        }
+
+        /* 卡片設計 */
+        .card {
+            background: var(--secondary-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+        }
+
+        .card h3 { 
+            color: var(--earth-orange); 
+            margin-bottom: 20px; 
+            font-size: 26px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .highlight-text { color: var(--accent-color); font-weight: 700; }
+
+        /* 數據指標網格 */
+        .stat-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .stat-item {
+            background: rgba(56, 189, 248, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .stat-number { font-size: 36px; font-weight: 700; color: var(--accent-color); font-family: 'Playfair Display', serif; }
+        .stat-label { font-size: 13px; color: var(--text-dim); margin-top: 5px; }
+
+        /* 數學標籤 */
+        .math-tag {
+            display: inline-block;
+            background: #334155;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 15px;
+            margin: 6px;
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* 頁尾 */
+        .footer-info {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dim);
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        /* 動態引用 */
+        .quote-box {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 5px solid var(--earth-orange);
+        }
+
+        @media (max-width: 768px) {
+            .slide-container { padding: 30px; margin: 10px auto; }
+            .slide-title { font-size: 24px; }
+            .grid-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 第一頁：標題 -->
+<div class="slide-container" id="slide1">
+    <div class="content-wrapper" style="justify-content: center; align-items: center; text-align: center;">
+        <div style="margin-bottom: 40px;">
+            <i class="fa-solid fa-compass-drafting" style="font-size: 60px; color: var(--accent-color); margin-bottom: 20px;"></i>
+            <h1 style="font-size: clamp(40px, 8vw, 72px); color: var(--accent-color); margin-bottom: 10px; font-family: 'Playfair Display', serif;">演講心得報告</h1>
+            <h2 style="font-size: clamp(20px, 4vw, 32px); color: var(--text-main); font-weight: 300; letter-spacing: 4px;">主題：地震層析與地球內部的窺探</h2>
+        </div>
+        <div style="background: var(--secondary-bg); padding: 25px 50px; border-radius: 60px; border: 1px solid var(--accent-color); box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 22px;">演講者：<span class="highlight-text">甘禮有 博士</span> &nbsp; | &nbsp; 學生：<span class="highlight-text">李政暟 (U11310009)</span></p>
+        </div>
+        <div class="footer-info" style="width: 100%; position: absolute; bottom: 0;">
+            <p>國立臺灣大學 地球科學導論</p>
+            <p>2024 秋季班作業</p>
+        </div>
+    </div>
+</div>
+
+<!-- 第二頁：科學的連結 -->
+<div class="slide-container" id="slide2">
+    <div class="content-wrapper">
+        <h2 class="slide-title"><i class="fa-solid fa-atom"></i> 01. 跨領域的宏觀視野 <span>廣度與連結</span></h2>
+        <div class="grid-layout">
+            <div class="card">
+                <h3><i class="fa-solid fa-satellite"></i> 從地核到太空</h3>
+                <p>甘博士的演講展現了地球科學驚人的跨度：從我們腳下 <span class="highlight-text">2900 公里深的地核</span>，到幾萬光年外的 <span class="highlight-text">恆星爆炸</span>。原本看似獨立的學門，在物理與規律的連結下，編織成一張完整的知識網。</p>
+                <div class="quote-box">
+                    <p style="color: var(--earth-orange); font-style: italic;">「我們或許無法親見恆星爆炸，但科學讓我們能看見世界運行的底層邏輯。」</p>
+                </div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <i class="fa-solid fa-fingerprint" style="font-size: 100px; color: var(--accent-color); opacity: 0.2; margin-bottom: 30px;"></i>
+                <p style="font-size: 20px; color: var(--text-dim);">地核如同地球的指紋，即便永遠無法親手觸碰，我們仍能透過波動解讀它的全貌。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第三頁：震測實務 -->
+<div class="slide-container" id="slide3">
+    <div class="content-wrapper">
+        <h2 class="slide-title"><i class="fa-solid fa-vial"></i> 02. 地震層析與實務觀察 <span>影像與實驗</span></h2>
+        <div class="grid-layout">
+            <div class="card">
+                <h3><i class="fa-solid fa-image"></i> 實驗課的回憶鏡頭</h3>
+                <p>簡報中出現的圖表勾起了實驗課的記憶。透過震源傳遞路徑的圖解，我們能直觀地觀察到：</p>
+                <ul style="margin-left: 25px; margin-top: 15px; color: var(--text-dim); gap: 10px; display: flex; flex-direction: column;">
+                    <li><i class="fa-solid fa-check text-blue-400"></i> 波在固態與液態介質中的速率差異</li>
+                    <li><i class="fa-solid fa-check text-blue-400"></i> 反射波與折射波的路徑分類</li>
+                    <li><i class="fa-solid fa-check text-blue-400"></i> 排除環境雜訊以獲取純淨訊號的藝術</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-database"></i> 關鍵簡報索引</h3>
+                <p>特別是關於 <span class="highlight-text">地震震測實驗</span> 的細節，幫助我更好地理解如何精準地尋找直達波。</p>
+                <div class="stat-grid">
+                    <div class="stat-item"><div class="stat-number">P11</div><div class="stat-label">路徑與速率剖面圖</div></div>
+                    <div class="stat-item"><div class="stat-number">P13</div><div class="stat-label">震測實驗原始紀錄</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第四頁：數學基石 -->
+<div class="slide-container" id="slide4">
+    <div class="content-wrapper">
+        <h2 class="slide-title"><i class="fa-solid fa-brain"></i> 03. 108 頁簡報下的數學基石 <span>回憶的湧現</span></h2>
+        <div class="grid-layout">
+            <div class="card" style="grid-column: span 2;">
+                <h3><i class="fa-solid fa-function"></i> 隱藏在二維座標下的邏輯</h3>
+                <p>甘博士長達 <span class="highlight-text">108 頁</span> 的簡報雖然份量驚人，但其中運用的數學邏輯卻與我們高中所學緊密扣連。看著那些複雜的成果圖，背後都是熟悉的基石：</p>
+                <div style="margin-top: 30px; text-align: center; background: rgba(0,0,0,0.2); padding: 30px; border-radius: 20px;">
+                    <span class="math-tag">線性回歸 Regression</span>
+                    <span class="math-tag">矩陣運算 Matrix</span>
+                    <span class="math-tag">微積分基礎 Calculus</span>
+                    <span class="math-tag">三角函數分量 Trigonometry</span>
+                    <span class="math-tag">最小平方法 Least Squares</span>
+                </div>
+                <p style="margin-top: 25px; color: var(--text-dim); text-align: center;">儘管內容難度「超綱」，但這些精準的計算展示了數學如何將混亂的地震訊號轉化為清晰的地層結構。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第五頁：哲學與成就 -->
+<div class="slide-container" id="slide5">
+    <div class="content-wrapper">
+        <h2 class="slide-title"><i class="fa-solid fa-mountain-sun"></i> 04. 科學山峰與應用價值 <span>進步與減災</span></h2>
+        <div class="grid-layout">
+            <div class="card">
+                <h3><i class="fa-solid fa-stairs"></i> 科學探索的無盡階梯</h3>
+                <p>科學探索像山峰一樣層層堆疊。當原以為的未知被發現了規律，舊的終點便成為了新領域大門的起點。</p>
+                <p style="margin-top: 20px; border-left: 4px solid var(--accent-color); padding-left: 15px;">「在原有的基礎上再鋪上一層成就，人類對自然的了解永遠都在進步。」</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-shield-halved"></i> 實質應用：虧損最小化</h3>
+                <p>雖然地震無法完全預測，但透過層析成像與資料分析，我們能更有效地：</p>
+                <div style="background: rgba(56, 189, 248, 0.1); padding: 20px; border-radius: 15px; margin-top: 15px; border: 1px dashed var(--accent-color);">
+                    <p style="color: var(--text-main); font-weight: 700; text-align: center;">精準評估地質風險，將災害損失降至最低。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第六頁：總結 -->
+<div class="slide-container" id="slide6">
+    <div class="content-wrapper" style="justify-content: center; align-items: center; text-align: center;">
+        <i class="fa-solid fa-quote-left" style="font-size: 60px; color: var(--accent-color); opacity: 0.3; margin-bottom: 40px;"></i>
+        <h2 style="font-size: clamp(30px, 6vw, 54px); font-family: 'Playfair Display', serif; line-height: 1.3; color: var(--accent-color);">
+            「每一張圖片，<br>都是不同時間點下的地球歷史照片。」
+        </h2>
+        <p style="font-size: 22px; color: var(--text-dim); margin-top: 40px; max-width: 800px;">
+            感謝甘博士帶來的 108 頁精彩旅程。即便內容超綱，依然讓我深刻感受到理解自然的巨大成就感。
+        </p>
+        <div style="margin-top: 80px; width: 300px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-color), transparent);"></div>
+        <p style="margin-top: 25px; font-size: 20px; letter-spacing: 2px;">李政暟 (U11310009) | 課程作業六完稿</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地溫梯度與臺灣深層地熱實踐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .bg-geothermal { background: linear-gradient(180deg, #1a1a1a 0%, #450a0a 100%); }
+        .card { transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .equation-box { background: rgba(255, 255, 255, 0.05); border-left: 4px solid #ef4444; }
+        .taiwan-accent { border-left: 4px solid #059669; background: rgba(5, 150, 105, 0.05); }
+        .image-container { @apply mb-6 rounded-xl overflow-hidden shadow-md border border-stone-200 bg-white p-1; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
+
+    <!-- Hero Section -->
+    <header class="bg-geothermal text-white py-16 px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">地溫梯度與地熱開發</h1>
+            <p class="text-xl text-stone-300">從全球地質理論到臺灣延平深層地熱探勘藍圖</p>
+        </div>
+        <div class="absolute right-[-50px] bottom-[-50px] opacity-10">
+            <i class="fas fa-microchip text-[200px]"></i>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+
+        <!-- 1. 基本概念與公式 -->
+        <section class="mb-16">
+            <div class="flex items-center mb-6">
+                <span class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 font-bold">1</span>
+                <h2 class="text-3xl font-bold">熱傳遞計算法則</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="space-y-4 text-lg">
+                    <p>地溫梯度在地殼中平均為 <strong>20–30°C/km</strong>。在板塊聚合帶如臺灣，受地殼縮短與流體活動影響，熱流分佈極為複雜。</p>
+                    <div class="equation-box p-6 rounded-lg my-4">
+                        <p class="text-sm text-stone-400 mb-2 font-mono uppercase">傅立葉定律 (Fourier's Law)</p>
+                        <div class="text-2xl">
+                            $$Q = k \times \frac{dT}{dz}$$
+                        </div>
+                    </div>
+                    <p class="text-sm text-stone-600 italic">Q 代表熱流密度，k 為熱導率，dT/dz 則為溫度隨深度的變化率。</p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/image.png" alt="板塊構造與熱流模型" class="w-full h-auto">
+                    <p class="text-center text-xs text-stone-500 py-2">圖一：全球板塊邊界與岩石圈熱傳遞示意模型</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                <h3 class="font-bold mb-4 text-red-800"><i class="fas fa-flask mr-2"></i>探勘拼圖：解讀地下熱源</h3>
+                <p class="text-sm text-stone-600 mb-4">成功的探勘需整合多學科數據，將「不可見」變為「可見」：</p>
+                <ul class="text-sm space-y-2 text-stone-700">
+                    <li><i class="fas fa-check text-green-600 mr-2"></i><strong>地質 (Geology)：</strong> 定位斷層通道。</li>
+                    <li><i class="fas fa-check text-green-600 mr-2"></i><strong>地化 (Geochemistry)：</strong> 分析流體起源（同位素與溫標）。</li>
+                    <li><i class="fas fa-check text-green-600 mr-2"></i><strong>地物 (Geophysics)：</strong> 描繪儲集層空間幾何形狀（MT 與重力）。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. 臺灣案例解析：延平地熱系統 -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-8 flex items-center text-emerald-800">
+                <i class="fas fa-map-location-dot mr-3"></i>實戰應用：臺東延平深層地熱
+            </h2>
+            
+            <!-- 主要探勘模型圖 -->
+            <div class="image-container shadow-lg mb-8">
+                <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/unnamed.jpg" alt="延平地熱探勘概念圖" class="w-full h-auto">
+                <p class="text-center text-sm text-stone-500 py-3 italic">延平地區地熱儲集層與熱流循環模式示意圖</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/image_geothermal2.png" alt="地物調查剖面" class="w-full h-auto">
+                    <p class="text-center text-xs text-stone-500 py-2">圖二：延平場址低電阻異常區（MT 電磁法調查）</p>
+                </div>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/image_geothermal3.png" alt="地熱系統模擬" class="w-full h-auto">
+                    <p class="text-center text-xs text-stone-500 py-2">圖三：地熱儲集層概念模型與流體循環分析</p>
+                </div>
+            </div>
+
+            <div class="taiwan-accent p-8 rounded-2xl shadow-sm mb-8">
+                <h3 class="text-xl font-bold mb-4">典型斷層控制型地熱田模式</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-100">
+                        <span class="text-emerald-600 font-bold">下滲區 (In-flow)</span>
+                        <p class="text-xs mt-2 text-stone-500">降水沿主要斷層帶下滲並逐步被地溫梯度加熱。</p>
+                    </div>
+                    <div class="bg-emerald-600 p-4 rounded-lg shadow-sm text-white">
+                        <span class="font-bold">上湧區 (Up-flow)</span>
+                        <p class="text-xs mt-2 text-emerald-50">高溫熱水沿 NE/EW 向裂隙快速升至 UF02 儲集層，是產能井核心區。</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-100">
+                        <span class="text-emerald-600 font-bold">外滲區 (Out-flow)</span>
+                        <p class="text-xs mt-2 text-stone-500">熱水到達地表淺層後向側方溢流，形成溫泉露頭。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                <h4 class="font-bold mb-4 text-stone-700">延平深層熱能參數摘要：</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="border-b py-2 flex justify-between">
+                        <span>主要地層</span>
+                        <span class="font-mono font-bold">變質砂岩與黑色板岩</span>
+                    </div>
+                    <div class="border-b py-2 flex justify-between">
+                        <span>儲集層頂部埋深</span>
+                        <span class="font-mono font-bold text-red-600">100 – 500 m</span>
+                    </div>
+                    <div class="border-b py-2 flex justify-between">
+                        <span>低電阻區規模</span>
+                        <span class="font-mono font-bold">> 2 km (東西向延伸)</span>
+                    </div>
+                    <div class="border-b py-2 flex justify-between">
+                        <span>潛在厚度評估</span>
+                        <span class="font-mono font-bold">250 m 以上</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 地球內部溫度觀測 (整合版) -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <i class="fas fa-layer-group text-red-600 mr-3"></i>全球地溫模型觀測
+            </h2>
+            <div class="overflow-x-auto rounded-xl border border-stone-200 shadow-sm bg-white">
+                <table class="w-full text-left">
+                    <thead class="bg-stone-100 border-b">
+                        <tr>
+                            <th class="p-4 font-bold">深度</th>
+                            <th class="p-4 font-bold">溫度 (°C)</th>
+                            <th class="p-4 font-bold">臺灣變質岩區對應機制</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="p-4">地表</td>
+                            <td class="p-4 text-blue-600">~15</td>
+                            <td class="p-4">地表輻射與溫泉外滲 (Out-flow)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">100–500m</td>
+                            <td class="p-4 font-bold text-red-500">局部高熱</td>
+                            <td class="p-4 bg-emerald-50 italic">熱水快速上湧區 (UF02 核心層)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">地殼基部 (Moho)</td>
+                            <td class="p-4">500 – 1,000</td>
+                            <td class="p-4">地殼傳導主導區</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. 科學意義 -->
+        <section class="grid md:grid-cols-2 gap-6 mb-16">
+            <div class="bg-stone-900 text-white p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4 text-yellow-400">探勘技術革新</h3>
+                <p class="text-sm text-stone-400 leading-relaxed">
+                    延平案例結合了「線型分析」與「大地電磁法 (MT)」，成功描繪出儲集層的空間形貌。這種系統化的藍圖對於臺灣東部變質岩區的深層地熱開發具有指標性意義。
+                </p>
+            </div>
+            <div class="bg-red-900 text-white p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4 text-red-200">能源轉型展望</h3>
+                <p class="text-sm text-red-100 leading-relaxed">
+                    理解地溫梯度不僅是學術研究，更是尋找本土再生能源的基礎。地熱作為穩定的基載綠能，其探勘深度已逐漸邁向 3,000 公尺以上的深層領域。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-10 text-stone-400 text-sm border-t border-stone-200">
+        <p>參考文獻：ITRI 臺灣深層地熱探勘藍圖 (2025)、地殼熱流與地球物理特論</p>
+        <p class="mt-2 italic">地球科學數位學習筆記 - 臺灣地熱專題版</p>
+    </footer>
+
+</body>
+</html>

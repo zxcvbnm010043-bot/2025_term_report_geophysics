@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>板塊構造理論與地磁學革命</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Hero Section -->
+    <header class="hero-gradient text-white py-16 px-6 text-center relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">地質學的偉大革命</h1>
+            <p class="text-xl text-slate-300 max-w-2xl mx-auto">從大陸漂移到板塊構造：跨越一世紀的科學探索與地磁學證據</p>
+        </div>
+        <!-- 裝飾性背景元件 -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky-nav border-b border-slate-200 py-4 px-6 mb-8">
+        <ul class="flex flex-wrap justify-center gap-4 md:gap-8 font-medium">
+            <li><button onclick="showSection('theory')" class="nav-btn text-blue-600 hover:text-blue-800" id="btn-theory">核心理論</button></li>
+            <li><button onclick="showSection('evidence')" class="nav-btn text-slate-600 hover:text-blue-600" id="btn-evidence">漂移證據</button></li>
+            <li><button onclick="showSection('paleomag')" class="nav-btn text-slate-600 hover:text-blue-600" id="btn-paleomag">古地磁學</button></li>
+            <li><button onclick="showSection('application')" class="nav-btn text-slate-600 hover:text-blue-600" id="btn-application">實務應用</button></li>
+        </ul>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+
+        <!-- Section 1: Core Theory -->
+        <section id="theory" class="content-section active">
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 flex items-center">
+                        <span class="bg-blue-600 text-white p-2 rounded mr-3"><i class="fas fa-layer-group"></i></span>
+                        板塊構造理論 (1967-1968)
+                    </h2>
+                    <p class="mb-4 text-lg leading-relaxed">
+                        地球岩石圈被切割成十幾塊<strong>「板塊」</strong>，漂浮在<strong>軟流圈</strong>之上，隨地幔對流緩慢移動（每年 1-15cm）。這是地球科學的統一場論。
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <p class="font-bold text-blue-800">驅動力：</p>
+                        <ul class="list-disc ml-5 text-blue-700">
+                            <li>板塊拉張 (Slab Pull)：冷而密的洋殼下沉（主因）</li>
+                            <li>脊部推力 (Ridge Push)</li>
+                            <li>地幔對流 (Mantle Convection)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="font-bold mb-4 text-center">邊界類型整理表</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="bg-slate-100">
+                                    <th class="p-2 border">邊界類型</th>
+                                    <th class="p-2 border">動作</th>
+                                    <th class="p-2 border">代表案例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-2 border font-medium text-blue-600">離散邊界</td>
+                                    <td class="p-2 border">產生新洋殼</td>
+                                    <td class="p-2 border">大西洋中脊、東非大裂谷</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="p-2 border font-medium text-red-600">聚合邊界</td>
+                                    <td class="p-2 border">相撞、消亡</td>
+                                    <td class="p-2 border">馬里亞納海溝、喜馬拉雅山</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 border font-medium text-orange-600">轉形邊界</td>
+                                    <td class="p-2 border">水平錯動</td>
+                                    <td class="p-2 border">聖安德列斯斷層</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Evidence -->
+        <section id="evidence" class="content-section">
+            <h2 class="text-3xl font-bold mb-8 text-center">大陸漂移：從嘲笑到真理</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-green-500">
+                    <i class="fas fa-puzzle-piece text-green-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">幾何拼圖</h3>
+                    <p class="text-sm text-slate-600">南美東岸與非洲西岸輪廓完美吻合，拼成「岡瓦納古地」。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-amber-500">
+                    <i class="fas fa-mountain text-amber-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">地質連續性</h3>
+                    <p class="text-sm text-slate-600">阿帕拉契山脈與英國加里東山脈曾為同一條造山帶。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-blue-400">
+                    <i class="fas fa-seedling text-blue-400 text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">古生物一致</h3>
+                    <p class="text-sm text-slate-600">舌羊齒、中龍化石跨洋分佈，證明陸地曾相連。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md card-hover border-t-4 border-indigo-500">
+                    <i class="fas fa-snowflake text-indigo-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">古氣候異常</h3>
+                    <p class="text-sm text-slate-600">熱帶發現冰川擦痕，證明這些大陸曾位於南極附近。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Paleomagnetism -->
+        <section id="paleomag" class="content-section">
+            <div class="bg-slate-900 text-white p-8 rounded-2xl mb-12 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-6">地磁學的關鍵角色</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 p-2 rounded-full mr-4"><i class="fas fa-compass"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold">視極移 (APWP)</h4>
+                                <p class="text-slate-400">不同大陸的古磁極路徑不一致，旋轉拼合大陸後路徑重合，這成為大陸漂移的第一個無可辯駁的證據。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-red-500 p-2 rounded-full mr-4"><i class="fas fa-wave-square"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold">海底磁條紋異常</h4>
+                                <p class="text-slate-400">洋中脊兩側磁異常呈對稱分佈，如同錄音帶紀錄地磁反轉，證明了「海底擴張」。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 視覺元素：磁場示意 -->
+                <div class="absolute right-0 bottom-0 opacity-20 hidden lg:block">
+                    <svg width="300" height="300" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.5" />
+                        <ellipse cx="50" cy="50" rx="20" ry="40" fill="none" stroke="white" stroke-width="0.5" />
+                        <line x1="50" y1="0" x2="50" y2="100" stroke="white" stroke-width="1" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Application -->
+        <section id="application" class="content-section">
+            <h2 class="text-3xl font-bold mb-8">現代應用案例</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow flex items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-2xl mr-4 shrink-0">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">印度-歐亞碰撞</h4>
+                        <p class="text-sm text-slate-600">精確測定於 50 Ma 印度以每年 18-20cm 的高速撞上歐亞大陸，引發喜馬拉雅造山。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow flex items-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-2xl mr-4 shrink-0">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">雪球地球事件</h4>
+                        <p class="text-sm text-slate-600">透過古地磁證明當時即使在赤道附近亦有冰川，確認全球曾被冰封。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow flex items-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-2xl mr-4 shrink-0">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">生物大滅絕背景</h4>
+                        <p class="text-sm text-slate-600">測定西伯利亞與德干玄武岩噴發時間，揭示火山活動與物種滅絕的同步關係。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow flex items-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-2xl mr-4 shrink-0">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">資源勘探</h4>
+                        <p class="text-sm text-slate-600">利用板塊運動模型尋找成礦帶，全球 99% 的大型金、銅礦分佈皆受此控制。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-200 py-8 text-center text-slate-500 border-t border-slate-300">
+        <p>© 2025 地球科學數位學習筆記 - 基於板塊構造理論文獻整理</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            // 隱藏所有區域
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 顯示目標區域
+            document.getElementById(id).classList.add('active');
+            
+            // 更新按鈕樣式
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-blue-600');
+                btn.classList.add('text-slate-600');
+            });
+            document.getElementById('btn-' + id).classList.add('text-blue-600');
+            document.getElementById('btn-' + id).classList.remove('text-slate-600');
+
+            // 滾動到導覽列
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

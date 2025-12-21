@@ -80,7 +80,7 @@
                         text: "地球物理課程網頁",
                         url: "https://zxcvbnm010043.blogspot.com/2025/09/blog-post.html",
                         color: "bg-emerald-600 hover:bg-emerald-700",
-                        icon: "fa-book-open"
+                        icon: "fa-book-open" //網頁打開類型(blogger)
                     }
                 ]
             },
@@ -251,12 +251,49 @@
                     }
                 ]
             },
-            { week: 13, date: "12/3", title: "微震監測、地熱探勘(大地電磁與人工智慧)", geo: "板塊構造與地熱", data: "Gemini API 申請, Dify", special: false  },
-            { week: 14, date: "12/10", title: "黃有志博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
+            { 
+                week: 13, 
+                date: "12/3", 
+                title: "微震監測、地熱探勘(大地電磁與人工智慧)", 
+                geo: "板塊構造與地熱", 
+                data: "Gemini API, Dify", 
+                special: false, 
+                //---新增第十三週連結---
+                links: [
+                    {
+                        text: "進入地震波形分析與教學平台",
+                        url: "https://huggingface.co/spaces/cwadayi/Eq_demo?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBEwSGRzajBiUnpvN1JNbUp4NXNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR5pNyCIBcGpHYV2knckA9yWl4IqTny9SgEKwE9h990bH4Z7Bik42Y4Fb2grrg_aem_Sa_3AsjFplvRlIxrKcMXBw",
+                        color: "bg-indigo-600 hover:bg-indigo-700",
+                        icon: "fa-robot" //網頁打開類型(hugging face連結)
+                    },
+                    {
+                        text: "地溫梯度與地熱開發",
+                        url: "week13_field.html", //子網頁連結
+                        color: "bg-emerald-600 hover:bg-emerald-700", //子網頁點選區域顏色與分類
+                        icon: "fa-book-open" //網頁打開類型(從github中的html尋找)
+                    }
+                ]
+            },
+            { 
+                week: 14, 
+                date: "12/10", 
+                title: "黃有志博士-專題演講", 
+                geo: "地球物理專題演講", 
+                data: null, 
+                special: "guest",  
+                links: [
+                    {
+                        text: "進入專題演講頁面",
+                        url: "week14_field.html",
+                        color: "bg-purple-600 hover:bg-purple-700",
+                        icon: "fa-microphone" //網頁打開類型(從github中的html尋找)
+                    }
+                ]
+            },
             { week: 15, date: "12/17", title: "廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
             { week: 16, date: "12/24", title: "期末專題發表", geo: null, data: null, special: "exam" },
-            { week: 17, date: "12/31", title: "彈性學習週", geo: null, data: null, special: "holiday" },
-            { week: 18, date: "1/7", title: "校外參訪", geo: "參訪大屯火山觀測中心 (暫定)", data: null, special: "trip" },
+            { week: 17, date: "12/31", title: "校外參訪", geo: "中央氣象署參訪", data: null, special: "trip" },
+            { week: 18, date: "1/7", title: "校外參訪", geo: "瑞芳地質與礦業中心參訪", data: null, special: "trip" },
         ];
 
         const grid = document.getElementById('course-grid');
@@ -354,6 +391,7 @@
     </script>
 </body>
 </html>
+
 
 
 

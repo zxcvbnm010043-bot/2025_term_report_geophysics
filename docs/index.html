@@ -59,7 +59,7 @@
         <p>&copy; 2024 地球物理學系 Course Webpage.</p>
     </footer>
 
-   <script>
+    <script>
         // --- 課程資料設定 ---
         const schedule = [
             { 
@@ -91,11 +91,10 @@
                 geo: "折射探勘學", 
                 data: "PyGMT, ObsPy, Streamlit, Gradio", 
                 special: false,
-                // --- 這裡修正了 Week 2 的結構 ---
                 links: [
                     {
                         text: "進入折射與工具頁面",
-                        url: "week2_field.html",  // 已修正拼字 (原本是 wwek2)
+                        url: "week2_field.html",
                         color: "bg-emerald-600 hover:bg-emerald-700",
                         icon: "fa-book-open"
                     }
@@ -117,8 +116,40 @@
                     }
                 ]
             },
-            { week: 4, date: "10/1", title: "甘禮有博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest" },
-            { week: 5, date: "10/8", title: "折射與互動程式", geo: "折射探勘學", data: "Hugging Face Space 製作互動程式", special: false },
+            { 
+                week: 4, 
+                date: "10/1", 
+                title: "甘禮有博士-專題演講", 
+                geo: "地球物理專題演講", 
+                data: null, 
+                special: "guest",
+                // --- 新增第四週連結 ---
+                links: [
+                    {
+                        text: "進入專題演講頁面",
+                        url: "week4_field.html", // 請確認檔案已上傳至根目錄
+                        color: "bg-purple-600 hover:bg-purple-700",
+                        icon: "fa-microphone"
+                    }
+                ]
+            },
+            { 
+                week: 5, 
+                date: "10/8", 
+                title: "折射與互動程式", 
+                geo: "折射探勘學", 
+                data: "Hugging Face Space 製作互動程式", 
+                special: false,
+                // --- 新增第五週連結 ---
+                links: [
+                    {
+                        text: "進入互動程式",
+                        url: "https://huggingface.co/spaces/Lee010043/FreeAir_Gravity",
+                        color: "bg-indigo-600 hover:bg-indigo-700",
+                        icon: "fa-robot"
+                    }
+                ]
+            },
             { week: 6, date: "10/15", title: "重力與雲端運算", geo: "重力探勘學", data: "Colab 使用", special: false },
             { week: 7, date: "10/22", title: "重力與版控", geo: "重力探勘學", data: "Github 與 Codespace 使用", special: false },
             { week: 8, date: "10/29", title: "期中考", geo: null, data: null, special: "exam" },
@@ -136,7 +167,6 @@
 
         const grid = document.getElementById('course-grid');
 
-        // ... (後面的 renderCourses 函式保持不變) ...
         function renderCourses(type) {
             grid.innerHTML = '';
             let visibleCount = 0;
@@ -161,7 +191,7 @@
                 if (type === 'geo') dataContent = ''; 
                 if (type === 'data') geoContent = '';
 
-                // --- 產生連結按鈕 (支援多個) ---
+                // --- 產生連結按鈕 ---
                 let buttonsHtml = '';
                 
                 if (item.links && item.links.length > 0) {
@@ -230,6 +260,3 @@
     </script>
 </body>
 </html>
-
-
-

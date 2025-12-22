@@ -43,8 +43,23 @@
             font-weight: 500;
         }
 
-        .code-font {
-            font-family: 'JetBrains Mono', monospace;
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 1rem;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -85,16 +100,21 @@
                     <div class="space-y-4">
                         <h3 class="text-xl font-semibold text-indigo-300">新生兒學習比喻</h3>
                         <p class="text-slate-300 leading-relaxed">
-                            廖博士將 AI 訓練巧妙比喻為新生兒辨識貓咪。人類能辨識不同花色、角度的動物，是因為大腦建立了記憶紀錄；AI 亦同，但其<strong>學習速度遠超人類</strong>，且隨著資料量增加，辨識的準確度與效率會持續攀升。
+                            廖博士將 AI 訓練巧妙比喻為新生兒辨識貓咪。人類能辨識不同花色、角度的動物，是因為大腦建立了記憶紀錄；AI 亦同，其<strong>學習速度遠超人類</strong>，且隨著資料量增加，辨識的準確度與效率會持續攀升。
                         </p>
                     </div>
-                    <div class="bg-indigo-900/20 rounded-2xl p-6 border border-indigo-500/20">
-                        <h3 class="text-lg font-semibold text-indigo-300 mb-4">資料增強 (Data Augmentation)</h3>
-                        <ul class="space-y-2 text-slate-400 text-sm">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>目的：增加資料多樣性，提升模型性能。</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>方法：水平/垂直翻轉、隨機旋轉。</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>方法：加入噪訊、灰階處理與隨機裁切。</li>
-                        </ul>
+                    <div class="space-y-4">
+                        <div class="bg-indigo-900/20 rounded-2xl p-6 border border-indigo-500/20">
+                            <h3 class="text-lg font-semibold text-indigo-300 mb-4">資料增強 (Data Augmentation)</h3>
+                            <ul class="space-y-2 text-slate-400 text-sm">
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>目的：增加資料多樣性，提升模型性能。</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>方法：翻轉、旋轉、雜訊、灰階與裁切。</li>
+                            </ul>
+                        </div>
+                        <div class="img-container">
+                            <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/week15_fig1.jpg" alt="資料增強示意圖">
+                            <p class="text-[10px] text-center text-slate-500 py-1 font-mono uppercase tracking-widest">Fig 1. Data Augmentation Techniques</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -109,33 +129,51 @@
                 </div>
 
                 <div class="space-y-8">
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <h4 class="text-purple-400 font-bold mb-2">自動化演進</h4>
-                            <p class="text-sm text-slate-400">從最初的人力標註，發展到 AI 自行辨識資料並進行高準確率分析。</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
+                                <h4 class="text-purple-400 font-bold mb-2">自動化演進與雜訊排除</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed">
+                                    目前的技術已能自動排除地層雜訊。透過輸入成對的波形與目標函數進行訓練，模型能輸出精確的推論結果。
+                                </p>
+                            </div>
+                            <div class="img-container">
+                                <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/week15_fig2.png" alt="訓練與應用階段流程圖">
+                                <p class="text-[10px] text-center text-slate-500 py-1 font-mono uppercase tracking-widest">Fig 2. Training vs Application Phase</p>
+                            </div>
                         </div>
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <h4 class="text-purple-400 font-bold mb-2">波形預測</h4>
-                            <p class="text-sm text-slate-400">利用歷史波形訓練模型，預測未來可能的地震波走勢。</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <h4 class="text-purple-400 font-bold mb-2">雜訊排除</h4>
-                            <p class="text-sm text-slate-400">透過 AI 排除地層複雜結構帶來的干擾，精確計算震源核心數據。</p>
+                        <div class="space-y-6">
+                            <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
+                                <h4 class="text-purple-400 font-bold mb-2">RED-PAN 模型應用</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed">
+                                    RED-PAN 用於即時地震偵測與相位挑選，其核心在於輕量化模型與針對真實世界的資料增強。
+                                </p>
+                            </div>
+                            <div class="img-container">
+                                <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/week15_fig4.jpg" alt="RED-PAN 模型示意圖">
+                                <p class="text-[10px] text-center text-slate-500 py-1 font-mono uppercase tracking-widest">Fig 3. RED-PAN Model Architecture</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="border-t border-slate-700 pt-8">
-                        <h3 class="text-xl font-semibold mb-6">深度學習模型分類</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="p-6 rounded-xl border border-dashed border-slate-600">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Type A</span>
-                                <h4 class="text-lg font-bold text-white mt-1">監督式學習 (Supervised)</h4>
-                                <p class="text-sm text-slate-400 mt-2">依賴標籤 (Labels) 進行分類。例如 <strong>RED-PAN 模型</strong>，能即時自動挑選地震相位。</p>
+                        <div class="grid md:grid-cols-2 gap-8 items-start">
+                            <div class="space-y-6">
+                                <h3 class="text-xl font-semibold">深度學習模型分類</h3>
+                                <div class="space-y-4">
+                                    <div class="p-5 rounded-xl border border-dashed border-slate-600">
+                                        <h4 class="text-md font-bold text-white">監督式學習 (Supervised)</h4>
+                                        <p class="text-xs text-slate-400 mt-1">依賴標籤進行分類 (Classification)。</p>
+                                    </div>
+                                    <div class="p-5 rounded-xl border border-dashed border-slate-600">
+                                        <h4 class="text-md font-bold text-white">非監督式學習 (Unsupervised)</h4>
+                                        <p class="text-xs text-slate-400 mt-1">進行資料分群 (Clustering)。</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="p-6 rounded-xl border border-dashed border-slate-600">
-                                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Type B</span>
-                                <h4 class="text-lg font-bold text-white mt-1">非監督式學習 (Unsupervised)</h4>
-                                <p class="text-sm text-slate-400 mt-2">不需標籤，讓模型自行尋找規律並進行資料分群 (Clustering)。</p>
+                            <div class="img-container">
+                                <img src="https://raw.githubusercontent.com/zxcvbnm010043-bot/2025_term_report_geophysics/main/week15_fig3.jpg" alt="監督式與非監督式學習比較">
+                                <p class="text-[10px] text-center text-slate-500 py-1 font-mono uppercase tracking-widest">Fig 4. Classification vs Clustering</p>
                             </div>
                         </div>
                     </div>
@@ -150,10 +188,10 @@
                 </div>
                 <div class="prose prose-invert max-w-none text-slate-300 space-y-4">
                     <p>
-                        觀察這一系列的三場演講（地震層析、火山與地震、AI 偵測），我發現這是一套完整的邏輯體系：地質學揭示風險，層析成像建立環境模型，而 <strong>AI 技術則將這一切整合</strong>，讓我們能精準預測並計算危險指數。
+                        觀察這一系列的三場演講，我發現這是一套完整的邏輯體系：地質學揭示風險，層析成像建立環境模型，而 <strong>AI 技術則將這一切整合</strong>，讓我們能精準預測並計算危險指數。
                     </p>
                     <blockquote class="border-l-2 border-slate-500 pl-4 italic text-slate-400 py-2">
-                        「面對自然的謙卑是必要的。每一次災害都是試煉，而我們正利用 AI 與前人的經驗，為未來的未知做好萬全準備。」
+                        「面對自然的謙卑是必要的。我們正利用 AI 與前人的經驗，為未來的未知做好萬全準備。」
                     </blockquote>
                 </div>
             </section>

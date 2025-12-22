@@ -290,7 +290,23 @@
                     }
                 ]
             },
-            { week: 15, date: "12/17", title: "廖勿渝博士-專題演講", geo: "地球物理專題演講", data: null, special: "guest"  },
+            { 
+                week: 15, 
+                date: "12/17", 
+                title: "廖勿渝博士-專題演講", 
+                geo: "地球物理專題演講", 
+                data: null, 
+                special: "guest",
+            //---新增第十五週的連結---
+                links: [
+                    {
+                        text: "進入專題演講頁面",
+                        url: "week15_field.html",
+                        color: "bg-purple-600 hover:bg-purple-700",
+                        icon: "fa-microphone" //網頁打開類型(從github中的html尋找)
+                    }
+                ]
+            },
             { week: 16, date: "12/24", title: "期末專題發表", geo: null, data: null, special: "exam" },
             { week: 17, date: "12/31", title: "校外參訪", geo: "中央氣象署參訪", data: null, special: "trip" },
             { week: 18, date: "1/7", title: "校外參訪", geo: "瑞芳地質與礦業中心參訪", data: null, special: "trip" },
@@ -391,6 +407,7 @@
     </script>
 </body>
 </html>
+
 
 
 

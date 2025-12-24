@@ -39,12 +39,26 @@
         </div>
     </header>
 
-    <!-- Controls -->
-    <section class="container mx-auto px-4 py-6 sticky top-16 bg-slate-50 z-40">
-        <div class="flex flex-wrap gap-2 justify-center">
-            <button onclick="filterCourses('all')" class="filter-btn active bg-slate-800 text-white px-5 py-2 rounded-full hover:bg-slate-700 transition-all shadow-md" id="btn-all">全部顯示</button>
-            <button onclick="filterCourses('geo')" class="filter-btn bg-white text-blue-600 border border-blue-600 px-5 py-2 rounded-full hover:bg-blue-50 transition-all" id="btn-geo">地球物理知識</button>
-            <button onclick="filterCourses('data')" class="filter-btn bg-white text-green-600 border border-green-600 px-5 py-2 rounded-full hover:bg-green-50 transition-all" id="btn-data">資料處理技能</button>
+    <!-- Controls & Legend -->
+    <section class="container mx-auto px-4 py-6 sticky top-16 bg-slate-50/95 backdrop-blur-sm z-40">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-6 bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+            
+            <!-- 篩選按鈕 -->
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button onclick="filterCourses('all')" class="filter-btn active bg-slate-800 text-white px-5 py-2 rounded-full hover:bg-slate-700 transition-all shadow-md" id="btn-all">全部顯示</button>
+                <button onclick="filterCourses('geo')" class="filter-btn bg-white text-blue-600 border border-blue-600 px-5 py-2 rounded-full hover:bg-blue-50 transition-all" id="btn-geo">地球物理知識</button>
+                <button onclick="filterCourses('data')" class="filter-btn bg-white text-green-600 border border-green-600 px-5 py-2 rounded-full hover:bg-green-50 transition-all" id="btn-data">資料處理技能</button>
+            </div>
+
+            <!-- 圖例說明 (Legend) -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-xs text-slate-600 border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6">
+                <div class="flex items-center"><span class="w-3 h-3 bg-indigo-600 rounded-full mr-2"></span><i class="fa-solid fa-robot mr-1 w-4"></i> Hugging Face / AI</div>
+                <div class="flex items-center"><span class="w-3 h-3 bg-gray-700 rounded-full mr-2"></span><i class="fa-solid fa-file-code mr-1 w-4"></i> GitHub 程式碼</div>
+                <div class="flex items-center"><span class="w-3 h-3 bg-purple-600 rounded-full mr-2"></span><i class="fa-solid fa-microphone mr-1 w-4"></i> 專家專題演講</div>
+                <div class="flex items-center"><span class="w-3 h-3 bg-emerald-600 rounded-full mr-2"></span><i class="fa-solid fa-book-open mr-1 w-4"></i> 課程筆記/網頁</div>
+                <div class="flex items-center"><span class="w-3 h-3 bg-amber-500 rounded-full mr-2"></span><i class="fa-solid fa-person-digging mr-1 w-4"></i> 野外實作訓練</div>
+                <div class="flex items-center"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span><i class="fa-solid fa-pen-to-square mr-1 w-4"></i> 期中/期末考</div>
+            </div>
         </div>
     </section>
 
@@ -384,3 +398,4 @@
     </script>
 </body>
 </html>
+

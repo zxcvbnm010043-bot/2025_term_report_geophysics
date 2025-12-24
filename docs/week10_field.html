@@ -6,86 +6,99 @@
   <title>印度板塊：火山與地震的景觀特色</title>
   <style>
     body { font-family: "Helvetica Neue", Arial, sans-serif; margin:0; padding:0; color:#222; background:#f7f8fb; }
-    header { background:linear-gradient(90deg,#0b4f6c,#1f8a70); color:white; padding:28px 20px; text-align:center; }
-    main { max-width:1000px; margin:24px auto; padding:20px; background:white; box-shadow:0 6px 18px rgba(10,20,30,0.06); border-radius:8px; }
-    h1 { margin:0 0 6px; font-size:26px; }
-    p.lead { margin:6px 0 18px; color:#333; }
-    section { margin:18px 0; }
-    .grid { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
-    .card { padding:14px; border-radius:6px; background:#fff; border:1px solid #eef2f6; }
-    ul { margin:8px 0 0 18px; }
-    img.screenshot { width:100%; max-width:360px; border-radius:6px; border:1px solid #ddd; display:block; margin: 0 auto; }
-    footer { text-align:center; font-size:13px; color:#666; padding:18px 0 40px; }
-    @media (max-width:900px) { .grid { grid-template-columns: 1fr; } img.screenshot { max-width:100%; } }
+    header { background:linear-gradient(90deg,#0b4f6c,#1f8a70); color:white; padding:40px 20px; text-align:center; }
+    main { max-width:1100px; margin:24px auto; padding:20px; }
+    h1 { margin:0 0 10px; font-size:28px; letter-spacing: 1px; }
+    .lead { font-size: 1.1em; color:#eee; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+    
+    .content-grid { display:grid; grid-template-columns: 1fr 380px; gap:24px; align-items:start; }
+    .card { padding:20px; border-radius:12px; background:#fff; border:1px solid #eef2f6; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
+    h2 { color: #0b4f6c; border-left: 5px solid #1f8a70; padding-left: 12px; margin-top: 0; font-size: 22px; }
+    h3 { font-size: 18px; margin-top: 0; color: #444; }
+    
+    ul { margin:12px 0 0 20px; line-height: 1.8; }
+    li strong { color: #0b4f6c; }
+    
+    .image-container { text-align:center; position: sticky; top: 20px; }
+    img.screenshot { width:100%; border-radius:8px; border:1px solid #ddd; display:block; transition: transform 0.3s; }
+    img.screenshot:hover { transform: scale(1.02); }
+    .img-caption { font-size:13px; color:#666; margin-top:12px; line-height: 1.5; }
+
+    footer { text-align:center; font-size:14px; color:#888; padding:40px 0; border-top: 1px solid #eee; margin-top: 20px; }
+    
+    @media (max-width:900px) { 
+      .content-grid { grid-template-columns: 1fr; } 
+      .image-container { position: static; }
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>印度板塊的火山與地震 — 景觀特色概述</h1>
-    <div style="opacity:0.95; margin-top:8px;">火山島、熔岩海岸、褶皺山脈與地表崩塌：板塊構造塑造的地貌印記</div>
+    <p class="lead">火山島、熔岩海岸、褶皺山脈與地表崩塌：探討板塊構造如何塑造壯麗的地貌印記。</p>
   </header>
 
   <main>
-    <p class="lead">印度板塊自古以來持續向北擠壓歐亞板塊，板塊碰撞與俯衝造成一系列壯麗且常具破壞性的地景：高山、斷層、火山島與海嘯沖刷的海岸地貌。本頁彙整主要景觀特色與代表事件，並附示意圖片供參考。</p>
-
-    <div class="grid">
-      <div>
+    <div class="content-grid">
+      <!-- 左側文字內容 -->
+      <div class="text-section">
         <section class="card">
           <h2>一、火山塑造的景觀</h2>
-          <p>印度板塊與鄰近海域具有少數活火山（例如 Barren Island、Narcondam），火山活動會產生：</p>
+          <p>印度板塊與鄰近海域（如安達曼海）存在少數活躍的火山活動點（如 Barren Island），這些活動形塑了獨特的地貌：</p>
           <ul>
-            <li><strong>孤立火山島</strong>：火山噴發堆積形成小島，島上常見熔岩流、火山口與火山碎屑物。</li>
-            <li><strong>熔岩海岸與黑色沙灘</strong>：熔岩流入海岸或冷卻碎裂，改變原始海岸線與海灘顏色。</li>
-            <li><strong>火山沉積平原</strong>：火山灰與碎屑物沉積使地表變平或形成新的土壤層。</li>
+            <li><strong>孤立火山島</strong>：噴發物持續堆積形成海中孤島，具有典型的錐狀地形與中央火山口。</li>
+            <li><strong>熔岩海岸與黑色沙灘</strong>：基性熔岩流入大海後迅速冷卻碎裂，形成獨特的黑色玄武岩沙灘。</li>
+            <li><strong>火山沉積平原</strong>：大量的火山灰降落，隨時間演化為極其肥沃的土壤層，改變局部生態。</li>
           </ul>
         </section>
 
-        <section class="card" style="margin-top:12px;">
+        <section class="card">
           <h2>二、地震造成的地貌</h2>
-          <p>強震與持續擠壓造就顯著地形：喜馬拉雅的隆起、斷層暴露與河道變動等：</p>
+          <p>印度板塊與歐亞板塊的強烈碰撞，是世界上地殼變動最劇烈的區域之一：</p>
           <ul>
-            <li><strong>褶皺與隆起山脈</strong>：印度板塊推擠歐亞板塊導致地層褶皺並向上隆起，形成喜馬拉雅山脈等。</li>
-            <li><strong>斷層線與斷崖</strong>：地震會在地表切割出斷層帶，長期風化形成斷崖與狹谷。</li>
-            <li><strong>山崩與坡地崩塌</strong>：強震誘發山坡失穩，造成大規模山崩，改變河谷地形。</li>
-            <li><strong>海嘯與海岸改寫</strong>：2004 印度洋大地震示警：海底位移會引發毀滅性海嘯，沖刷或重塑沿海地貌。</li>
+            <li><strong>褶皺山脈與隆起</strong>：地層因擠壓而彎曲、斷裂並向上抬升，形成如喜馬拉雅山脈的高聳地貌。</li>
+            <li><strong>斷層線與斷崖</strong>：強震常伴隨地表破裂，形成綿延數公里的斷層崖與深深的溝壑。</li>
+            <li><strong>山崩與坡地崩塌</strong>：高聳山區受地震誘發，易發生大規模土石流，甚至阻塞河道形成堰塞湖。</li>
+            <li><strong>海嘯重塑海岸線</strong>：如 2004 年南亞海嘯，巨大的能量徹底沖刷了沿岸的紅樹林與沙洲地形。</li>
           </ul>
         </section>
 
-        <section class="card" style="margin-top:12px;">
-          <h2>三、歷史大事件（代表性）</h2>
+        <section class="card">
+          <h2>三、歷史代表性事件</h2>
           <ul>
-            <li><strong>1950 阿薩姆－西藏地震（M≈8.6）</strong>：強烈震動引發大量山崩、河道變動，長期改變局部地貌。</li>
-            <li><strong>2004 印度洋大地震（M≈9.2–9.3）</strong>：造成海嘯，沿岸生態與地形遭大規模改變。</li>
-            <li><strong>2001 古吉拉特地震（M≈7.7）</strong>：沿斷層帶的地表變形與城鎮破壞。</li>
-            <li><strong>1933 / 1976 四川強震</strong>：對山區坡地與河谷造成持久地形影響（示例作用，位於印度次大陸邊緣帶）。</li>
+            <li><strong>1950 阿薩姆－西藏地震 (M≈8.6)</strong>：導致地貌發生永久性位移，河道改道且引發無數山崩。</li>
+            <li><strong>2004 印度洋大地震 (M≈9.2)</strong>：引發跨洋海嘯，深刻改變了蘇門答臘與安達曼群島的海岸線。</li>
+            <li><strong>2001 古吉拉特地震 (M≈7.7)</strong>：地表出現顯著裂隙，造成大面積地面沉降與液化現象。</li>
           </ul>
         </section>
       </div>
 
-      <aside>
-        <div class="card" style="text-align:center;">
-          <h3>示意圖片</h3>
-          <!-- 修正後的圖片路徑 -->
-          <img class="screenshot" src="india_plate.png" alt="印度板塊構造示意圖">
-          <div style="font-size:13px; color:#666; margin-top:8px;">圖：印度板塊運動與地質特徵示意</div>
+      <!-- 右側圖片固定欄 -->
+      <aside class="image-container">
+        <div class="card">
+          <h3>板塊構造示意圖</h3>
+          <!-- 使用相對路徑，確保 GitHub Pages 能抓到同目錄下的圖片 -->
+          <img class="screenshot" src="india_plate.png" alt="印度板塊構造與景觀示意圖">
+          <p class="img-caption">
+            <strong>圖：印度板塊運動特徵</strong><br>
+            呈現板塊碰撞邊界、俯衝帶以及相關的火山地震分佈示意。
+          </p>
         </div>
-
-        <div class="card" style="margin-top:12px;">
-          <h3>如何上傳到 GitHub 並啟用 Pages</h3>
-          <ol>
-            <li>把此檔案命名為 <code>index.html</code>，放在你的 repo 根目錄。</li>
-            <li>確保 <code>india_plate.png</code> 也放在同一個根目錄。</li>
-            <li>在 GitHub repo 頁面，前往 <strong>Settings → Pages</strong>。</li>
-            <li>選擇 Branch: <code>main</code>、Folder: <code>/ (root)</code>，按 Save。</li>
-            <li>等待約 1 分鐘，即可透過產生的網址查看網頁。</li>
-          </ol>
+        
+        <div class="card" style="background: #f0f7ff; border-color: #d0e3ff;">
+          <h3 style="font-size: 16px; color: #0b4f6c;">💡 說明</h3>
+          <p style="font-size: 14px; text-align: left; color: #555;">
+            此頁面為「地球物理與資料處理實務」課程專案之子網頁。透過 PyGMT 繪圖技術與 HTML/CSS 呈現印度板塊的地質景觀研究。
+          </p>
         </div>
       </aside>
     </div>
 
     <footer>
-      © 地質簡介頁 • 2025 地球物理學術報告
+      © 2025 地球物理學術報告 | 印度板塊地質專題
     </footer>
   </main>
+
 </body>
 </html>
